@@ -1,1 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi Inti Lua - LuaVerse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <header class="sticky-nav">
+        <nav class="container nav-content">
+            <a href="index.html" class="logo-text">LuaVerse</a>
+            <div class="nav-links-desktop">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="docs.html" class="nav-link active">Dokumentasi Inti</a>
+                <a href="tutorials.html" class="nav-link">Tutorial</a>
+                <a href="community.html" class="nav-link">Komunitas</a>
+                <a href="contact.html" class="cta-button nav-cta">Mulai Coding!</a>
+            </div>
+            <button class="hamburger-menu" aria-label="Toggle navigation">&#9776;</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="docs-header" style="background-color: var(--color-dark); color: white; padding: 120px 0 60px 0;">
+            <div class="container">
+                <h1 style="font-size: 3rem; color: var(--color-accent-orange);">Dokumentasi Inti Lua</h1>
+                <p style="font-size: 1.2rem; margin-top: 15px;">Penjelasan mendalam, contoh kode, dan kasus penggunaan untuk fitur-fitur terkuat Lua.</p>
+            </div>
+        </section>
+
+        <section class="docs-content" style="padding: 80px 0; background-color: white;">
+            <div class="container" style="display: flex; gap: 40px;">
+                
+                <aside style="flex: 1; max-width: 280px;">
+                    <nav class="docs-sidebar" style="position: sticky; top: 100px;">
+                        <h3 style="color: var(--lua-purple-dark); margin-bottom: 20px;">Daftar Isi</h3>
+                        <a href="#metatable-full" class="sidebar-link" style="display: block; margin-bottom: 10px; color: var(--color-dark); text-decoration: none;">1. Metatable</a>
+                        <a href="#coroutine-full" class="sidebar-link" style="display: block; margin-bottom: 10px; color: var(--color-dark); text-decoration: none;">2. Coroutines</a>
+                        <a href="#datatype-full" class="sidebar-link" style="display: block; margin-bottom: 10px; color: var(--color-dark); text-decoration: none;">3. Tipe Data & Table</a>
+                        <a href="#loops" class="sidebar-link" style="display: block; margin-bottom: 10px; color: var(--color-dark); text-decoration: none;">4. Loop & Kontrol</a>
+                    </nav>
+                </aside>
+
+                <article style="flex: 3; min-width: 600px;">
+                    
+                    <h2 id="metatable-full" style="color: var(--lua-purple-dark); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 25px;">1. Metatable: Membangun OOP di Lua</h2>
+                    <p>
+                        **Metatable** adalah table yang mendefinisikan perilaku table lain (disebut table pemilik). Ini adalah mekanisme yang digunakan Lua untuk mengimplementasikan *operator overloading*, *inheritance*, dan *safemodes* melalui *metamethods* (fungsi yang dimulai dengan `__`). Metamethods yang paling umum adalah `__index` dan `__newindex`.
+                    </p>
+                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Kasus Penggunaan: Inheritance dengan `__index`</h3>
+                    <p>
+                        Dengan mendefinisikan `__index` ke table lain (table parent/class), Lua akan mencari properti yang hilang di parent table tersebut, menciptakan perilaku *inheritance* sederhana dan efisien yang umum digunakan dalam *game engine*.
+                    </p>
+                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Inheritance Objek</h4>
+                    <pre class="code-block">
+-- Table Class (Parent)
+local Class = {}
+Class.__index = Class
+
+function Class:new(nama)
+    local self = {nama = nama, health = 100}
+    return setmetatable(self, self) -- Metatable menunjuk ke diri sendiri (Class)
+end
+
+-- Table Instance (Child)
+local Player = Class:new("Rogue")
+
+-- Player tidak memiliki fungsi 'getHealth', tapi Lua mencarinya di Class
+function Class:getHealth()
+    return self.health
+end
+
+print(Player:getHealth()) -- Output: 100
+                    </pre>
+
+                    <h2 id="coroutine-full" style="color: var(--lua-purple-dark); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 50px; margin-bottom: 25px;">2. Coroutines: Multitasking Ringan</h2>
+                    <p>
+                        Berbeda dengan *thread* yang berjalan secara paralel (*preemptive multitasking*), Coroutines menawarkan *cooperative multitasking*. Artinya, Coroutine **menyerahkan kontrol** kembali ke pemanggil secara eksplisit menggunakan `coroutine.yield()`. Ini menjadikannya alat yang sempurna untuk:
+                        <ul>
+                            <li>Mengelola *state machine* game (misalnya, animasi bertahap).</li>
+                            <li>Simulasi I/O Asinkron tanpa pemblokiran (*blocking*).</li>
+                        </ul>
+                    </p>
+                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Simulasi Game Loop</h4>
+                    <pre class="code-block">
+local function gameLoop(time)
+    print("Mulai Game Loop. Waktu:", time)
+    coroutine.yield() -- Tunggu Frame 1
+    
+    print("Frame 1: Update Posisi Pemain")
+    coroutine.yield() -- Tunggu Frame 2
+    
+    print("Frame 2: Cek Kollisi")
+    return "Loop Selesai"
+end
+
+local co = coroutine.create(gameLoop)
+print(coroutine.resume(co, 0))   -- Output: true, Mulai Game Loop...
+print(coroutine.resume(co))      -- Output: true, Frame 1...
+print(coroutine.resume(co))      -- Output: true, Frame 2...
+print(coroutine.status(co))      -- Output: dead
+                    </pre>
+                    
+                    <h2 id="datatype-full" style="color: var(--lua-purple-dark); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 50px; margin-bottom: 25px;">3. Tipe Data & Table: Table Adalah Segalanya</h2>
+                    <p>
+                        Lua hanya memiliki delapan tipe data primitif, dan **table** adalah yang paling unik. Table adalah satu-satunya mekanisme struktur data yang kompleks; ia bersifat *heterogen* (dapat menyimpan tipe data campuran) dan *dinamis* (ukuran dapat berubah saat runtime).
+                    </p>
+                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Table sebagai Array vs. Map</h3>
+                    <p>
+                        Ketika Anda mengakses table menggunakan indeks numerik berurutan ($1, 2, 3...$), table berfungsi sebagai *array*. Ketika Anda menggunakan kunci non-numerik (string), table berfungsi sebagai *map* (hash table). Keduanya dapat digunakan dalam table yang sama.
+                    </p>
+                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Table Campuran (Hybrid Table)</h4>
+                    <pre class="code-block">
+local data = {
+    -- Key numerik (array part)
+    "Peluru", 
+    "Obat", 
+    
+    -- Key string (map part)
+    nama = "Item Data",
+    jumlah_total = 50,
+    
+    -- Key boolean (valid)
+    [false] = "Error Mode"
+}
+
+print(data[1])             -- Output: Peluru (Array)
+print(data.nama)           -- Output: Item Data (Map)
+print(data[false])         -- Output: Error Mode
+                    </pre>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
