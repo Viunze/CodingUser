@@ -317,3 +317,60 @@ h1, h2, h3 {
         margin-bottom: 40px;
     }
 }
+
+/* ... (Gaya global, font, header, hero, dan cards yang sudah ada) ... */
+
+/* ==================== Styling Khusus Halaman Docs (Kerapian) ==================== */
+.docs-content .container {
+    display: flex;
+    gap: 40px;
+}
+.docs-sidebar h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--lua-purple-dark);
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 5px;
+}
+.docs-sidebar a {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-dark);
+    text-decoration: none;
+    transition: color 0.2s, border-left 0.2s;
+    padding: 5px 0 5px 10px;
+    border-left: 3px solid transparent;
+    font-size: 0.95rem;
+}
+.docs-sidebar a:hover {
+    color: var(--color-accent-blue);
+    border-left: 3px solid var(--color-accent-blue);
+}
+.docs-sidebar a.active {
+    font-weight: 600;
+    color: var(--color-accent-orange);
+    border-left: 3px solid var(--color-accent-orange);
+}
+.docs-content h2 {
+    /* Gaya untuk judul kategori besar (A. Konsep Lua Inti, B. Konsep Roblox) */
+    font-size: 2.2rem;
+    color: var(--color-dark);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+.docs-content h3 {
+    /* Gaya untuk judul sub-bagian (1. Table Hybrid, 2. Metatable) */
+    font-size: 1.7rem;
+    color: var(--color-dark);
+    margin-top: 40px;
+    margin-bottom: 15px;
+    padding-left: 0; /* Menghilangkan padding kiri yang mungkin ada */
+}
+.docs-content p {
+    margin-bottom: 15px;
+}
+
+/* ... (Gaya code-block, responsif, dan footer yang sudah ada) ... */
