@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Lanjutan Lua - LuaVerse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Gaya Khusus Halaman Tutorial */
+        .tutorial-header {
+            padding: 120px 0 60px 0;
+            background: linear-gradient(90deg, #1a0f1f, var(--lua-purple-light));
+            color: white;
+        }
+        .tutorial-header h1 {
+            color: var(--color-accent-orange);
+            font-size: 3rem;
+        }
+        .tutorial-grid {
+            padding: 80px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        /* Menggunakan ulang gaya .content-card tapi dengan fokus tutorial */
+        .tutorial-card {
+            background: white; 
+            padding: 30px;
+            border-radius: var(--border-radius-card); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--color-accent-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tutorial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top-color: var(--color-accent-orange);
+        }
+        .tutorial-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--lua-purple-dark);
+        }
+        .tutorial-card .level {
+            display: inline-block;
+            background-color: #e6e6e6;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .tutorial-card .code-snippet-teaser {
+            background-color: #f0f0f0;
+            color: #555;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            margin: 15px 0;
+            border-left: 3px solid var(--color-accent-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="sticky-nav">
+        <nav class="container nav-content">
+            <a href="index.html" class="logo-text">LuaVerse</a>
+            <div class="nav-links-desktop">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="docs.html" class="nav-link">Dokumentasi Inti</a>
+                <a href="tutorials.html" class="nav-link active">Tutorial</a>
+                <a href="contact.html" class="nav-link">Hubungi Kami</a>
+                <a href="contact.html" class="cta-button nav-cta">Mulai Coding!</a>
+            </div>
+            <button class="hamburger-menu" aria-label="Toggle navigation">&#9776;</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="tutorial-header">
+            <div class="container">
+                <h1>Tutorial Lanjutan & Praktis</h1>
+                <p style="font-size: 1.2rem; margin-top: 15px; color: rgba(255, 255, 255, 0.9);">Pelajari cara menerapkan fitur inti Lua ke proyek nyata, langkah demi langkah.</p>
+            </div>
+        </section>
+
+        <section class="tutorial-grid container">
+            
+            <article class="tutorial-card">
+                <span class="level" style="color: #FF6B35;">Lanjutan</span>
+                <h3>Membangun Sistem Kelas OOP Penuh</h3>
+                <p>Panduan lengkap tentang cara menggunakan Metatable dan `__index` untuk membuat sistem *Class* yang kuat dan mendukung *Inheritance*.</p>
+                <div class="code-snippet-teaser">
+                    -- my_class.lua
+                    local M = {}
+                    M.__index = M
+                    ...
+                </div>
+                <a href="#" class="cta-button" style="padding: 10px 20px;">Baca Tutorial Lengkap</a>
+            </article>
+
+            <article class="tutorial-card">
+                <span class="level" style="color: #007BFF;">Menengah</span>
+                <h3>Coroutines: Game Loop Tanpa Blokir</h3>
+                <p>Pelajari cara menggunakan Coroutines untuk menjalankan beberapa proses *game* secara kooperatif tanpa mengunci *thread* utama.</p>
+                <div class="code-snippet-teaser">
+                    local co = coroutine.create(gameUpdate)
+                    ...
+                    coroutine.resume(co)
+                </div>
+                <a href="#" class="cta-button" style="padding: 10px 20px;">Baca Tutorial Lengkap</a>
+            </article>
+
+            <article class="tutorial-card">
+                <span class="level" style="color: #1a0f1f;">Expert</span>
+                <h3>Lua C API: Ekstensi Kinerja</h3>
+                <p>Integrasikan fungsi C/C++ yang berkinerja tinggi ke dalam skrip Lua Anda. Esensial untuk optimasi dan *binding* engine.</p>
+                <div class="code-snippet-teaser">
+                    // C Code:
+                    static int lua_add(lua_State *L) { ... }
+                </div>
+                <a href="#" class="cta-button" style="padding: 10px 20px;">Baca Tutorial Lengkap</a>
+            </article>
+
+            <article class="tutorial-card">
+                <span class="level" style="color: #4CAF50;">Dasar-Menengah</span>
+                <h3>Modularisasi Proyek Besar dengan `require`</h3>
+                <p>Atur kode Anda menjadi modul yang bersih dan mandiri menggunakan sistem `require` Lua, menghindari variabel global.</p>
+                <div class="code-snippet-teaser">
+                    local config = require("config.settings")
+                    local Entity = require("lib.entity")
+                </div>
+                <a href="#" class="cta-button" style="padding: 10px 20px;">Baca Tutorial Lengkap</a>
+            </article>
+
+        </section>
+        
+        <section class="cta-banner">
+            <div class="container">
+                <h2>Siap Mendalami Lua?</h2>
+                <a href="docs.html" class="cta-button">Lihat Dokumentasi Referensi</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <h4 class="footer-heading">LuaVerse</h4>
+                <p>Situs pembelajaran bahasa Lua yang fokus pada efisiensi, kecepatan, dan aplikasi di dunia nyata.</p>
+                <p class="copyright">&copy; 2024 LuaVerse. Dibuat dengan semangat open source.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4 class="footer-heading">Tautan</h4>
+                <a href="docs.html" class="footer-link">Dokumentasi</a>
+                <a href="tutorials.html" class="footer-link">Tutorial Lanjutan</a>
+                <a href="contact.html" class="footer-link">Ajukan Pertanyaan</a>
+            </div>
+            
+            <div class="footer-community">
+                <h4 class="footer-heading">Komunitas</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-link">Discord</a>
+                    <a href="#" class="social-link">GitHub</a>
+                    <a href="#" class="social-link">Twitter/X</a>
+                </div>
+                <p class="footer-contact">Email: info@luaverse.dev</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
