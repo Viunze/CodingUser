@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LuaVerse: Gerbang Pembelajaran Lua yang Ringan</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,10 +13,10 @@
         <nav class="container nav-content">
             <a href="index.html" class="logo-text">LuaVerse</a>
             <div class="nav-links-desktop">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link active">Home</a>
                 <a href="docs.html" class="nav-link">Dokumentasi Inti</a>
-                <a href="#lua-core" class="nav-link">Konsep Lanjutan</a>
-                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="tutorials.html" class="nav-link">Tutorial</a>
+                <a href="contact.html" class="nav-link">Hubungi Kami</a>
                 <a href="contact.html" class="cta-button nav-cta">Mulai Coding!</a>
             </div>
             <button class="hamburger-menu" aria-label="Toggle navigation">&#9776;</button>
@@ -25,126 +24,19 @@
     </header>
 
     <main>
-        <section id="home" class="hero-section">
-            <div class="container hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-headline">Kuasai Lua. <br> Ringan. Cepat. Efisien.</h1>
-                    <p class="hero-subtext">Gerbang Anda menuju pemrograman yang kuat dan sederhana, sempurna untuk game development & scripting. Pelajari bahasa yang **cepat di mana pun sumber daya terbatas**.</p>
-                    <a href="docs.html" class="cta-button">Lihat Dokumentasi Inti</a>
-                </div>
-                <div class="hero-image-placeholder">
-                    <p>Lua Code Snippet Illustration</p>
-                </div>
+        <section class="hero-section">
+            <div class="container"> 
+                <h1>Mastering Lua: Efisiensi, Kecepatan, dan Skalabilitas</h1>
+                <p>Jelajahi bahasa skrip ringan yang menjadi pilihan utama untuk *game engine* dan aplikasi kinerja tinggi.</p>
+                <a href="docs.html" class="cta-button">Lihat Dokumentasi Inti</a>
             </div>
         </section>
 
-        <section class="main-content-section" id="fitur">
-            <div class="container">
-                <h2 class="section-title">Mengapa Belajar Lua di Sini?</h2>
-                <div class="card-grid">
-                    
-                    <article class="content-card">
-                        <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
-                        <h3 class="card-title">Sintaksis Minimalis</h3>
-                        <p>Fokus pada logika Anda. Pelajari *syntax* Lua yang elegan, efisien, dan mudah dipahami dalam 20 menit.</p>
-                    </article>
-
-                    <article class="content-card">
-                        <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2v2h4V2h2v2c1.1 0 2 .9 2 2v3h-2V6H8v3H6V6c0-1.1.9-2 2-2V2h2zm-2 7h8v9H8V9zm8 11v2h-8v-2h8z"/></svg></div>
-                        <h3 class="card-title">Integrasi C/C++ Superior</h3>
-                        <p>Lua adalah bahasa scripting inti di Roblox, Nginx, dan aplikasi besar lainnya. Integrasi superior dengan C/C++.</p>
-                    </article>
-
-                    <article class="content-card">
-                        <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
-                        <h3 class="card-title">Referensi Komprehensif</h3>
-                        <p>Akses dokumentasi terbaru, dari tipe data dasar hingga implementasi *Metatable* dan *Coroutine* tingkat lanjut.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+        <section class="container" style="padding: 60px 20px;">
+            <h2>Mengapa Lua?</h2>
+            <p>Lua sangat cepat, kecil, dan mudah diintegrasikan. Ini adalah pilihan ideal untuk... (Konten Anda di sini)</p>
+            </section>
         
-        <section id="lua-core" class="lua-core-section">
-            <div class="container">
-                <h2 class="section-title" style="color: white;">Konsep Inti Lua (Lanjutan)</h2>
-                <p class="section-intro-text">
-                    Selami lebih dalam fitur-fitur yang membuat Lua kuat. Setiap topik mencakup **pengertian mendalam** dan **contoh kode praktis**.
-                </p>
-
-                <div class="core-concept-tabs">
-                    <div class="tab-buttons">
-                        <button class="tab-button active" onclick="showLuaConcept('metatable')">1. Metatable</button>
-                        <button class="tab-button" onclick="showLuaConcept('coroutine')">2. Coroutines</button>
-                        <button class="tab-button" onclick="showLuaConcept('datatype')">3. Table Hybrid</button>
-                    </div>
-
-                    <div class="tab-content active" id="metatable">
-                        <h3 class="content-title">Metatable: Memperluas Perilaku Table</h3>
-                        <p>
-                            **Metatable** adalah kunci untuk implementasi **OOP** dan *operator overloading* di Lua. Ia memungkinkan Anda mengubah cara table berinteraksi, misalnya, mendefinisikan apa yang terjadi saat dua table dijumlahkan (`__add`).
-                        </p>
-                        <h4 class="code-title">Contoh Code (Ringkas): Overloading</h4>
-                        <pre class="code-block">
-local mt = {
-    __add = function(a, b) return a.value + b.value end
-}
-local obj1 = {value = 5}
-local obj2 = {value = 10}
-
-setmetatable(obj1, mt)
-print(obj1 + obj2) -- Output: 15
-                        </pre>
-                        <a href="docs.html#metatable-full" class="link-full-doc">Baca Penjelasan & Kode **Lengkap** $\rightarrow$</a>
-                    </div>
-                    
-                    <div class="tab-content" id="coroutine" style="display: none;">
-                        <h3 class="content-title">Coroutines: Eksekusi yang Kooperatif</h3>
-                        <p>Coroutines memungkinkan **pause dan resume** fungsi. Ini menyediakan *multitasking* kooperatif yang sangat efisien dan ringan, ideal untuk *game loop* atau alur kerja I/O asinkron.</p>
-                        <a href="docs.html#coroutine-full" class="link-full-doc">Baca Penjelasan & Kode **Lengkap** $\rightarrow$</a>
-                    </div>
-
-                    <div class="tab-content" id="datatype" style="display: none;">
-                        <h3 class="content-title">Table Hybrid: Array, Map, dan Object dalam Satu</h3>
-                        <p>Table adalah satu-satunya struktur data kompleks di Lua. Ia dapat berfungsi sebagai *Array* (indeks numerik) dan *Hash Map* (indeks string) secara bersamaan, memberikan fleksibilitas luar biasa.</p>
-                        <a href="docs.html#datatype-full" class="link-full-doc">Baca Penjelasan & Kode **Lengkap** $\rightarrow$</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="main-content-section" style="padding-top: 50px;">
-            <div class="container">
-                <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
-                <div class="accordion-container">
-                    <div class="accordion-item">
-                        <button class="accordion-header" aria-expanded="false">
-                            Apa keunggulan utama Lua dibandingkan Python/JavaScript?
-                            <span class="accordion-icon">+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Keunggulan utama Lua adalah **kecepatannya**, **ukuran *footprint*-nya yang sangat kecil** (sekitar 250KB), dan **kemampuan integrasinya** yang superior dengan C/C++ (sebagai *embedded language*). Ini ideal untuk *scripting* game dan sistem tertanam.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header" aria-expanded="false">
-                            Di mana Lua paling sering digunakan?
-                            <span class="accordion-icon">+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Lua sangat populer di **Game Development** (Roblox, World of Warcraft Addons, CryEngine) dan **Network/System Scripting** (Nginx, Redis, Wireshark). Kecepatannya di lingkungan *high-performance* tidak tertandingi.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-banner">
-            <div class="container">
-                <h2>Siap Membangun Dunia Anda?</h2>
-                <a href="docs.html" class="cta-button">Lihat Dokumentasi Lengkap</a>
-            </div>
-        </section>
-
     </main>
 
     <footer class="main-footer">
@@ -154,27 +46,9 @@ print(obj1 + obj2) -- Output: 15
                 <p>Situs pembelajaran bahasa Lua yang fokus pada efisiensi, kecepatan, dan aplikasi di dunia nyata.</p>
                 <p class="copyright">&copy; 2024 LuaVerse. Dibuat dengan semangat open source.</p>
             </div>
-            
-            <div class="footer-links">
-                <h4 class="footer-heading">Tautan</h4>
-                <a href="docs.html" class="footer-link">Dokumentasi</a>
-                <a href="tutorials.html" class="footer-link">Tutorial Lanjutan</a>
-                <a href="contact.html" class="footer-link">Ajukan Pertanyaan</a>
             </div>
-            
-            <div class="footer-community">
-                <h4 class="footer-heading">Komunitas</h4>
-                <div class="social-icons">
-                    <a href="#" class="social-link">Discord</a>
-                    <a href="#" class="social-link">GitHub</a>
-                    <a href="#" class="social-link">Twitter/X</a>
-                </div>
-                <p class="footer-contact">Email: info@luaverse.dev</p>
-            </div>
-        </div>
     </footer>
 
-    <script src="script.js"></script>
-
+    <script src="script.js"></script> 
 </body>
 </html>
