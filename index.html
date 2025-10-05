@@ -12,11 +12,11 @@
 
     <header class="sticky-nav">
         <nav class="container nav-content">
-            <a href="#home" class="logo-text">LuaVerse</a>
+            <a href="index.html" class="logo-text">LuaVerse</a>
             <div class="nav-links-desktop">
-                <a href="#home" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link">Home</a>
                 <a href="docs.html" class="nav-link">Dokumentasi Inti</a>
-                <a href="#lua-core" class="nav-link">Konsep (Lanjutan)</a>
+                <a href="#lua-core" class="nav-link">Konsep Lanjutan</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="contact.html" class="cta-button nav-cta">Mulai Coding!</a>
             </div>
@@ -28,8 +28,8 @@
         <section id="home" class="hero-section">
             <div class="container hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-headline">Kuasai Lua. Ringan. Cepat. Efisien.</h1>
-                    <p class="hero-subtext">Gerbang Anda menuju pemrograman yang kuat dan sederhana, sempurna untuk game development & scripting.</p>
+                    <h1 class="hero-headline">Kuasai Lua. <br> Ringan. Cepat. Efisien.</h1>
+                    <p class="hero-subtext">Gerbang Anda menuju pemrograman yang kuat dan sederhana, sempurna untuk game development & scripting. Pelajari bahasa yang **cepat di mana pun sumber daya terbatas**.</p>
                     <a href="docs.html" class="cta-button">Lihat Dokumentasi Inti</a>
                 </div>
                 <div class="hero-image-placeholder">
@@ -42,6 +42,7 @@
             <div class="container">
                 <h2 class="section-title">Mengapa Belajar Lua di Sini?</h2>
                 <div class="card-grid">
+                    
                     <article class="content-card">
                         <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
                         <h3 class="card-title">Sintaksis Minimalis</h3>
@@ -50,7 +51,7 @@
 
                     <article class="content-card">
                         <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2v2h4V2h2v2c1.1 0 2 .9 2 2v3h-2V6H8v3H6V6c0-1.1.9-2 2-2V2h2zm-2 7h8v9H8V9zm8 11v2h-8v-2h8z"/></svg></div>
-                        <h3 class="card-title">Powering Games & Apps</h3>
+                        <h3 class="card-title">Integrasi C/C++ Superior</h3>
                         <p>Lua adalah bahasa scripting inti di Roblox, Nginx, dan aplikasi besar lainnya. Integrasi superior dengan C/C++.</p>
                     </article>
 
@@ -67,22 +68,22 @@
             <div class="container">
                 <h2 class="section-title" style="color: white;">Konsep Inti Lua (Lanjutan)</h2>
                 <p class="section-intro-text">
-                    Pelajari fitur-fitur terkuat Lua yang membuatnya unggul dalam kinerja dan fleksibilitas. Pilih topik di bawah ini untuk penjelasan rinci.
+                    Selami lebih dalam fitur-fitur yang membuat Lua kuat. Setiap topik mencakup **pengertian mendalam** dan **contoh kode praktis**.
                 </p>
 
                 <div class="core-concept-tabs">
                     <div class="tab-buttons">
-                        <button class="tab-button active" onclick="showLuaConcept('metatable')">Metatable (Kekuatan OOP)</button>
-                        <button class="tab-button" onclick="showLuaConcept('coroutine')">Coroutines (Multitasking Ringan)</button>
-                        <button class="tab-button" onclick="showLuaConcept('datatype')">Tipe Data & Table</button>
+                        <button class="tab-button active" onclick="showLuaConcept('metatable')">1. Metatable</button>
+                        <button class="tab-button" onclick="showLuaConcept('coroutine')">2. Coroutines</button>
+                        <button class="tab-button" onclick="showLuaConcept('datatype')">3. Table Hybrid</button>
                     </div>
 
                     <div class="tab-content active" id="metatable">
                         <h3 class="content-title">Metatable: Memperluas Perilaku Table</h3>
                         <p>
-                            **Metatable** adalah jantung dari fleksibilitas Lua. Ini memungkinkan kita mengubah perilaku table menggunakan *metamethods* seperti `__index` untuk *inheritance* atau `__add` untuk *operator overloading*. Fitur ini sangat penting untuk implementasi **OOP** di Lua.
+                            **Metatable** adalah kunci untuk implementasi **OOP** dan *operator overloading* di Lua. Ia memungkinkan Anda mengubah cara table berinteraksi, misalnya, mendefinisikan apa yang terjadi saat dua table dijumlahkan (`__add`).
                         </p>
-                        <h4 class="code-title">Contoh Code (Sederhana): Operator Overloading</h4>
+                        <h4 class="code-title">Contoh Code (Ringkas): Overloading</h4>
                         <pre class="code-block">
 local mt = {
     __add = function(a, b) return a.value + b.value end
@@ -91,22 +92,21 @@ local obj1 = {value = 5}
 local obj2 = {value = 10}
 
 setmetatable(obj1, mt)
-
 print(obj1 + obj2) -- Output: 15
                         </pre>
-                        <a href="docs.html#metatable-full" class="link-full-doc">Baca Penjelasan & Kode Lengkap $\rightarrow$</a>
+                        <a href="docs.html#metatable-full" class="link-full-doc">Baca Penjelasan & Kode **Lengkap** $\rightarrow$</a>
                     </div>
                     
                     <div class="tab-content" id="coroutine" style="display: none;">
                         <h3 class="content-title">Coroutines: Eksekusi yang Kooperatif</h3>
-                        <p>Coroutines memungkinkan **pause dan resume** fungsi. Ideal untuk manajemen animasi game, I/O non-blokir, atau alur kerja yang kompleks. Ini memberikan *multitasking* kooperatif yang ringan dan efisien.</p>
-                        <a href="docs.html#coroutine-full" class="link-full-doc">Baca Penjelasan & Kode Lengkap $\rightarrow$</a>
+                        <p>Coroutines memungkinkan **pause dan resume** fungsi. Ini menyediakan *multitasking* kooperatif yang sangat efisien dan ringan, ideal untuk *game loop* atau alur kerja I/O asinkron.</p>
+                        <a href="docs.html#coroutine-full" class="link-full-doc">Baca Penjelasan & Kode **Lengkap** $\rightarrow$</a>
                     </div>
 
                     <div class="tab-content" id="datatype" style="display: none;">
-                        <h3 class="content-title">Tipe Data & Table: Table Adalah Segalanya</h3>
-                        <p>Lua hanya punya delapan tipe data. **Table** adalah struktur data utama yang berfungsi ganda sebagai *array*, *hash map*, dan *object*. Fleksibilitas ini membuat kodenya sangat ringkas.</p>
-                        <a href="docs.html#datatype-full" class="link-full-doc">Baca Penjelasan & Kode Lengkap $\rightarrow$</a>
+                        <h3 class="content-title">Table Hybrid: Array, Map, dan Object dalam Satu</h3>
+                        <p>Table adalah satu-satunya struktur data kompleks di Lua. Ia dapat berfungsi sebagai *Array* (indeks numerik) dan *Hash Map* (indeks string) secara bersamaan, memberikan fleksibilitas luar biasa.</p>
+                        <a href="docs.html#datatype-full" class="link-full-doc">Baca Penjelasan & Kode **Lengkap** $\rightarrow$</a>
                     </div>
                 </div>
             </div>
@@ -122,17 +122,16 @@ print(obj1 + obj2) -- Output: 15
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-content">
-                            <p>Keunggulan utama Lua adalah **kecepatannya**, **ukuran *footprint*-nya yang sangat kecil** (sekitar 250KB), dan **kemampuan integrasinya** yang superior dengan C/C++ (sebagai *embedded language*). Ini membuatnya ideal untuk *scripting* game dan sistem tertanam, di mana performa dan sumber daya sangat dibatasi.</p>
+                            <p>Keunggulan utama Lua adalah **kecepatannya**, **ukuran *footprint*-nya yang sangat kecil** (sekitar 250KB), dan **kemampuan integrasinya** yang superior dengan C/C++ (sebagai *embedded language*). Ini ideal untuk *scripting* game dan sistem tertanam.</p>
                         </div>
                     </div>
-                    
                     <div class="accordion-item">
                         <button class="accordion-header" aria-expanded="false">
                             Di mana Lua paling sering digunakan?
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-content">
-                            <p>Lua sangat populer di **Game Development** (Roblox, World of Warcraft Addons, CryEngine) dan **Network/System Scripting** (Nginx, Redis, Wireshark). Kecepatannya di lingkungan *high-performance* tidak tertandingi oleh bahasa *scripting* lain.</p>
+                            <p>Lua sangat populer di **Game Development** (Roblox, World of Warcraft Addons, CryEngine) dan **Network/System Scripting** (Nginx, Redis, Wireshark). Kecepatannya di lingkungan *high-performance* tidak tertandingi.</p>
                         </div>
                     </div>
                 </div>
