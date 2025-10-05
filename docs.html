@@ -26,8 +26,49 @@
     <main>
         <section class="docs-header">
             <div class="container">
-                <h1 style="font-size: 3rem; color: var(--color-accent-orange);">Dokumentasi Inti Lua</h1>
-                <p style="font-size: 1.2rem; margin-top: 15px;">Penjelasan mendalam, contoh kode, dan kasus penggunaan untuk fitur-fitur terkuat Lua.</p>
+                <h1>Dokumentasi Inti Lua</h1>
+                <p>Penjelasan mendalam, contoh kode, dan kasus penggunaan untuk fitur-fitur terkuat Lua.</p>
+            </div>
+        </section>
+
+        <section id="roadmap" class="docs-roadmap" style="background-color: var(--color-light); padding: 50px 0;">
+            <div class="container">
+                <h2 style="text-align: center; color: var(--color-accent-blue); margin-bottom: 40px;">Roadmap Pembelajaran Lua 🚀</h2>
+                <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                    
+                    <article class="content-card" style="border-left-color: #4CAF50;">
+                        <h3 class="card-title" style="color: #4CAF50;">Level 1: Fondasi</h3>
+                        <p>Kuasai sintaks dasar yang minimalis. Pondasi yang kuat untuk semua aplikasi.</p>
+                        <ul>
+                            <li>Variables & Scope (local/global)</li>
+                            <li>Tipe Data (nil, number, string)</li>
+                            <li>Kontrol Flow (if/else, while)</li>
+                        </ul>
+                        <a href="#datatype-full" class="link-full-doc" style="color: #4CAF50;">Mulai $\rightarrow$</a>
+                    </article>
+
+                    <article class="content-card" style="border-left-color: #FFC107;">
+                        <h3 class="card-title" style="color: #FFC107;">Level 2: Fungsionalitas</h3>
+                        <p>Membuat kode Anda lebih terstruktur, modular, dan kuat.</p>
+                        <ul>
+                            <li>**Functions & Closures**</li>
+                            <li>**Table** sebagai Array & Map</li>
+                            <li>**Modular Programming** (`require`)</li>
+                        </ul>
+                        <a href="#functions" class="link-full-doc" style="color: #FFC107;">Lanjut $\rightarrow$</a>
+                    </article>
+
+                    <article class="content-card" style="border-left-color: var(--color-accent-orange);">
+                        <h3 class="card-title" style="color: var(--color-accent-orange);">Level 3: Mastery</h3>
+                        <p>Selami fitur unik yang membuat Lua menjadi pilihan *High-Performance*.</p>
+                        <ul>
+                            <li>**Metatable** (OOP)</li>
+                            <li>**Coroutines** (Multitasking)</li>
+                            <li>**Garbage Collection** (Optimasi)</li>
+                        </ul>
+                        <a href="#metatable-full" class="link-full-doc" style="color: var(--color-accent-orange);">Mastery $\rightarrow$</a>
+                    </article>
+                </div>
             </div>
         </section>
 
@@ -36,11 +77,13 @@
                 
                 <aside style="flex: 1; max-width: 280px;">
                     <nav class="docs-sidebar" style="position: sticky; top: 100px;">
-                        <h3 style="color: var(--lua-purple-dark); margin-bottom: 20px;">Daftar Isi</h3>
+                        <h3>Daftar Isi</h3>
                         <a href="#metatable-full" class="sidebar-link">1. Metatable: OOP & Overloading</a>
                         <a href="#coroutine-full" class="sidebar-link">2. Coroutines: Multitasking</a>
                         <a href="#datatype-full" class="sidebar-link">3. Table Hybrid & Tipe Data</a>
                         <a href="#functions" class="sidebar-link">4. Fungsi & Penutup (Closure)</a>
+                        <a href="#gc-full" class="sidebar-link">5. Garbage Collection</a>
+                        <a href="#tailcalls-full" class="sidebar-link">6. Tail Calls</a>
                     </nav>
                 </aside>
 
@@ -48,45 +91,36 @@
                     
                     <h2 id="metatable-full">1. Metatable: Membangun OOP di Lua</h2>
                     <p>
-                        **Pengertian:** Metatable adalah table khusus yang mendefinisikan bagaimana table lain (table pemilik) akan berperilaku dalam operasi tertentu. Ini adalah kunci fleksibilitas Lua dan fondasi untuk **Object-Oriented Programming (OOP)** dan *operator overloading*.
+                        **Pengertian:** Metatable adalah table khusus yang mendefinisikan perilaku table lain (table pemilik). Ini adalah kunci fleksibilitas Lua dan fondasi untuk **Object-Oriented Programming (OOP)** dan *operator overloading*.
                     </p>
-                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Pilihan Metamethods Kunci:</h3>
-                    <ul>
-                        <li>`__index`: Dipanggil saat mencari properti yang hilang. Digunakan untuk **Inheritance**.</li>
-                        <li>`__newindex`: Dipanggil saat mencoba menetapkan nilai ke properti yang hilang. Digunakan untuk **Read-Only Table**.</li>
-                        <li>`__add`, `__sub`, `__mul`: Metamethods untuk *operator overloading*.</li>
-                    </ul>
-                    
-                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Inheritance (Class Structure)</h4>
+                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Kasus Penggunaan: Inheritance dengan `__index`</h3>
+                    <p>
+                        Dengan mendefinisikan `__index` ke table lain (table parent/class), Lua akan mencari properti yang hilang di parent table tersebut, menciptakan perilaku *inheritance* sederhana dan efisien yang umum digunakan dalam *game engine*.
+                    </p>
+                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Inheritance Objek</h4>
                     <pre class="code-block">
--- Base Class (Class Prototype)
+-- Table Class (Parent)
 local ClassHewan = {}
-ClassHewan.__index = ClassHewan -- Penting untuk Inheritance
+ClassHewan.__index = ClassHewan 
 
 function ClassHewan:new(nama)
-    local self = {nama = nama, is_alive = true}
-    return setmetatable(self, ClassHewan)
+    local self = {nama = nama, health = 100}
+    return setmetatable(self, ClassHewan) 
 end
 
-function ClassHewan:bersuara()
-    print(self.nama .. " membuat suara!")
+-- Method milik ClassHewan
+function ClassHewan:getHealth()
+    return self.health
 end
 
 local Kucing = ClassHewan:new("Milo")
-Kucing:bersuara() -- Output: Milo membuat suara!
+print(Kucing:getHealth()) -- Output: 100
                     </pre>
 
                     <h2 id="coroutine-full">2. Coroutines: Multitasking Ringan</h2>
                     <p>
-                        **Pengertian:** Coroutines adalah bentuk *multitasking* **kooperatif**. Berbeda dengan *thread* (paralel), Coroutine **menyerahkan kontrol** secara eksplisit menggunakan `coroutine.yield()`, dan dapat dilanjutkan dari tempat ia berhenti menggunakan `coroutine.resume()`.
+                        **Pengertian:** Coroutines adalah bentuk *multitasking* **kooperatif**. Berbeda dengan *thread* (paralel), Coroutine **menyerahkan kontrol** secara eksplisit menggunakan `coroutine.yield()`, dan dapat dilanjutkan dari tempat ia berhenti menggunakan `coroutine.resume()`. Ini ideal untuk simulasi *state machine* atau I/O asinkron non-pemblokiran.
                     </p>
-                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Pilihan Fungsi Coroutine:</h3>
-                    <ul>
-                        <li>`coroutine.create(func)`: Membuat Coroutine baru dari sebuah fungsi.</li>
-                        <li>`coroutine.resume(co, ...)`: Memulai atau melanjutkan eksekusi Coroutine.</li>
-                        <li>`coroutine.yield(...)`: Menangguhkan eksekusi dan mengembalikan nilai ke pemanggil.</li>
-                    </ul>
-                    
                     <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Simetri Producer-Consumer</h4>
                     <pre class="code-block">
 local function producer()
@@ -105,43 +139,35 @@ local co = coroutine.create(producer)
 print(coroutine.resume(co)) -- Output: true, 1
 print(coroutine.resume(co, "Item Diterima!")) -- Output: Producer menerima: Item Diterima!, true, 2
                     </pre>
-
+                    
                     <h2 id="datatype-full">3. Table Hybrid & Tipe Data</h2>
                     <p>
-                        **Pengertian:** Lua hanya memiliki **delapan tipe data primitif** (`nil`, `boolean`, `number`, `string`, `userdata`, `thread`, `function`, dan yang paling penting, `table`). Tipe `table` bertindak sebagai *array*, *hash map*, *object*, dan *module* secara bersamaan.
+                        **Pengertian:** Lua hanya memiliki **delapan tipe data primitif**. **Table** adalah struktur data utama yang berfungsi ganda sebagai *array*, *hash map*, *object*, dan *module* secara bersamaan (Hybrid).
                     </p>
-                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Pilihan Implementasi Table:</h3>
+                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Kunci Fleksibilitas Table:</h3>
                     <ul>
-                        <li>**Array Sequential:** Menggunakan kunci numerik berurutan. Dioptimalkan untuk akses cepat.</li>
-                        <li>**Hash Map (Dictionary):** Menggunakan kunci string atau bahkan kunci table lain.</li>
-                        <li>**Hybrid:** Menggabungkan array dan map dalam satu struktur.</li>
+                        <li>**Array Sequential:** Menggunakan kunci numerik berurutan (indeks $1, 2, 3...$).</li>
+                        <li>**Hash Map (Dictionary):** Menggunakan kunci string atau tipe data Lua lainnya.</li>
+                        <li>**Kunci $nil$ tidak diizinkan!** Akses ke kunci yang tidak ada menghasilkan $nil$.</li>
                     </ul>
-                    
                     <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Table Hybrid dan Nilai Default</h4>
                     <pre class="code-block">
-local inventory = {
-    -- Array part
-    "Pedang", 
-    "Perisai", 
+local data = {
+    "Peluru", -- key 1
+    "Obat",   -- key 2
     
-    -- Map part
-    slots = 5,
-    owner = "Dev"
+    nama = "Item Data", -- key "nama"
+    jumlah_total = 50,  -- key "jumlah_total"
 }
 
--- Array: Akses berdasarkan posisi (1-based index)
-print(inventory[2])       -- Output: Perisai
-
--- Map: Akses berdasarkan kunci
-print(inventory.owner)    -- Output: Dev
-
--- Nilai yang tidak ada menghasilkan nil
-print(inventory.gold)     -- Output: nil
+print(data[2])          -- Output: Obat (Array)
+print(data.nama)        -- Output: Item Data (Map)
+print(data.gold)        -- Output: nil (Kunci tidak ada)
                     </pre>
                     
                     <h2 id="functions">4. Fungsi & Penutup (Closure)</h2>
                     <p>
-                        **Pengertian:** Fungsi adalah tipe data *first-class* di Lua, artinya fungsi dapat disimpan dalam variabel, dilewatkan sebagai argumen, dan dikembalikan oleh fungsi lain. **Closure** terjadi ketika sebuah fungsi bersarang ('nested function') menyimpan akses ke variabel lokal dari fungsi luarnya.
+                        **Pengertian:** Fungsi adalah tipe data *first-class*. **Closure** terjadi ketika sebuah fungsi bersarang menyimpan akses ke variabel lokal dari fungsi luarnya, bahkan setelah fungsi luar tersebut selesai dieksekusi.
                     </p>
                     <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Membuat Counter dengan Closure</h4>
                     <pre class="code-block">
@@ -155,11 +181,50 @@ function createCounter()
 end
 
 local counterA = createCounter()
-local counterB = createCounter()
 
 print(counterA()) -- Output: 1
 print(counterA()) -- Output: 2
-print(counterB()) -- Output: 1 (Memiliki 'count' yang terpisah)
+                    </pre>
+
+                    <h2 id="gc-full">5. Garbage Collection: Manajemen Memori Ringan</h2>
+                    <p>
+                        **Pengertian:** Lua menggunakan *Garbage Collector* (GC) **inkremental** dan **generasional**. Ini berarti GC dapat melakukan pekerjaannya dalam tahapan kecil (*increments*), mengurangi *stuttering* atau *lag* yang disebabkan oleh pembersihan memori (*stop-the-world* GC). Ini sangat penting untuk Game Development!
+                    </p>
+                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Pilihan Kontrol GC:</h3>
+                    <ul>
+                        <li>`collectgarbage("collect")`: Memaksa siklus GC penuh.</li>
+                        <li>`collectgarbage("count")`: Mengembalikan jumlah memori yang digunakan (dalam KB).</li>
+                        <li>`collectgarbage("setpause", p)`: Mengatur persentase di mana GC akan mulai bekerja lagi (default 200%).</li>
+                    </ul>
+
+                    <h2 id="tailcalls-full">6. Tail Calls: Optimasi Rekursi</h2>
+                    <p>
+                        **Pengertian:** *Tail call* adalah pemanggilan fungsi sebagai **aksi terakhir** dalam sebuah fungsi. Lua secara otomatis melakukan *Tail Call Optimization* (TCO), di mana ia dapat membuang *stack frame* dari fungsi pemanggil sebelum melakukan pemanggilan terakhir.
+                    </p>
+                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Pentingnya TCO:</h3>
+                    <p>
+                        TCO memungkinkan Anda menulis algoritma **rekursif** tak terbatas (seperti *loop* pada Game Engine) tanpa risiko **stack overflow**. Ini adalah salah satu fitur Lua yang paling efisien.
+                    </p>
+                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Tail Call Optimization</h4>
+                    <pre class="code-block">
+-- Ini adalah Tail Call (Optimized)
+function hitung(n, hasil)
+    if n == 0 then
+        return hasil
+    else
+        -- Aksi terakhir adalah 'return hitung(..)', stack frame dibuang
+        return hitung(n - 1, hasil + n) 
+    end
+end
+
+-- Ini BUKAN Tail Call (Membutuhkan stack frame untuk menyimpan hasil n * ... )
+function factorial(n)
+    if n == 0 then
+        return 1
+    else
+        return n * factorial(n - 1) 
+    end
+end
                     </pre>
                 </article>
             </div>
@@ -194,6 +259,6 @@ print(counterB()) -- Output: 1 (Memiliki 'count' yang terpisah)
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js"></script> 
 </body>
 </html>
