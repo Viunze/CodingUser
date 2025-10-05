@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: '0px 0px -50px 0px' 
     });
 
+    // Amati elemen cards
     document.querySelectorAll('.content-card').forEach(card => {
         observer.observe(card);
     });
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const icon = header.querySelector('.accordion-icon');
             const isExpanded = header.getAttribute('aria-expanded') === 'true';
 
-            // Tutup semua yang terbuka (untuk mode single-open)
+            // Tutup semua yang terbuka
             document.querySelectorAll('.accordion-header').forEach(h => {
                 if (h !== header && h.getAttribute('aria-expanded') === 'true') {
                     h.setAttribute('aria-expanded', 'false');
@@ -51,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Toggle yang sedang diklik
             if (!isExpanded) {
                 header.setAttribute('aria-expanded', 'true');
-                // Gunakan scrollHeight untuk mendapatkan tinggi konten aktual
                 content.style.maxHeight = content.scrollHeight + 'px'; 
                 icon.style.transform = 'rotate(45deg)'; 
             } else {
