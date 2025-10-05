@@ -37,7 +37,7 @@
                 <aside style="flex: 1; max-width: 280px;">
                     <nav class="docs-sidebar" style="position: sticky; top: 100px;">
                         <h3>💡 Lua Inti (Global)</h3>
-                        <a href="#core-table" class="sidebar-link">1. Table & Tipe Data (Hybrid)</a>
+                        <a href="#core-table" class="sidebar-link">1. Table Hybrid & Tipe Data</a>
                         <a href="#core-metatable" class="sidebar-link">2. Metatable & Metamethods</a>
                         <a href="#core-coroutines" class="sidebar-link">3. Coroutines</a>
                         <a href="#core-closures" class="sidebar-link">4. Closures & First-Class F.</a>
@@ -47,6 +47,7 @@
                         <a href="#core-tco" class="sidebar-link">8. Tail Call Optimization</a>
                         <a href="#core-gc" class="sidebar-link">9. Garbage Collection</a>
                         <a href="#core-error" class="sidebar-link">10. Error Handling (`pcall`)</a>
+
                         <h3>👾 Lua Roblox Studio</h3>
                         <a href="#roblox-instance" class="sidebar-link">11. Instances & Datamodel</a>
                         <a href="#roblox-events" class="sidebar-link">12. Events & Connection</a>
@@ -66,86 +67,226 @@
                     <h2 id="lua-core-title" style="border-bottom: 3px solid var(--color-accent-blue); padding-bottom: 15px;">A. Konsep Lua Inti (Global)</h2>
 
                     <h3 id="core-table" style="color: var(--color-dark); margin-top: 40px;">1. Table Hybrid & Tipe Data</h3>
-                    <p>**Pengertian:** Table adalah struktur data majemuk tunggal Lua yang berfungsi sebagai **Array** (indeks numerik) dan **Hash Map/Dictionary** (indeks string) secara bersamaan. Lua hanya memiliki delapan tipe data primitif, dan Table adalah kunci untuk semua struktur kompleks.</p>
+                    <p>**Pengertian:** Struktur data tunggal yang berfungsi sebagai **Array** (indeks numerik) dan **Hash Map/Dictionary** (indeks string) secara bersamaan. Fleksibilitas ini adalah kunci efisiensi Lua.</p>
                     <h4 class="code-title">Contoh Code: Dualitas Table</h4>
                     <pre class="code-block">
 local data = {
     "Peluru", -- Array key 1
     jumlah = 50, -- Map key "jumlah"
 }
-print(data[1])  -- Output: Peluru (Array Access)
-print(data.jumlah) -- Output: 50 (Map Access)
+-- Akses Array:
+print(data[1]) 
+-- Akses Map:
+print(data.jumlah)
                     </pre>
 
                     <h3 id="core-metatable" style="color: var(--color-dark); margin-top: 40px;">2. Metatable & Metamethods</h3>
-                    <p>**Pengertian:** **Metatable** adalah *mechanism* untuk mendefinisikan perilaku table. **Metamethods** adalah fungsi yang disimpan di Metatable (seperti `__index` atau `__add`) yang dipanggil ketika operasi tertentu dilakukan pada table pemiliknya, memungkinkan OOP dan operator overloading.</p>
-                    <h4 class="code-title">Contoh Code: Metamethod `__add`</h4>
+                    <p>**Pengertian:** **Metatable** mendefinisikan perilaku table. **Metamethods** (seperti `__add` atau `__index`) adalah fungsi di Metatable yang dipanggil saat operasi tertentu dilakukan pada table pemilik, memungkinkan OOP.</p>
+                    <h4 class="code-title">Contoh Code: Metamethod `__index` (Inheritance)</h4>
                     <pre class="code-block">
-local vectorMt = { 
-    __add = function(a, b) return {x = a.x + b.x} end
-}
-local v1 = setmetatable({x=1}, vectorMt)
-local v2 = {x=2} 
+local Parent = {health = 100}
+local Child = {}
+setmetatable(Child, {__index = Parent})
 
-print((v1 + v2).x) 
--- Output: 3 (Metamethod __add dipanggil)
+print(Child.health) -- Output: 100
                     </pre>
-                    
+
                     <h3 id="core-coroutines" style="color: var(--color-dark); margin-top: 40px;">3. Coroutines</h3>
-                    <p>**Pengertian:** Bentuk *multitasking* **kooperatif** (bukan paralel) yang memungkinkan fungsi untuk ditangguhkan (**`yield`**) dan dilanjutkan (**`resume`**) dari titik penghentiannya. Ideal untuk simulasi I/O, animasi, atau game loop berbasis *state machine*.</p>
+                    <p>**Pengertian:** Bentuk *multitasking* **kooperatif**. Fungsi dapat ditangguhkan (**`yield`**) dan dilanjutkan (**`resume`**) dari titik penghentiannya. Ideal untuk simulasi I/O atau game loop berbasis *state machine*.</p>
+                    <h4 class="code-title">Contoh Code: Yielding Coroutine</h4>
+                    <pre class="code-block">
+local co = coroutine.create(function()
+    print("Mulai...")
+    coroutine.yield() -- Menangguhkan
+    print("Lanjut!")
+end)
+
+coroutine.resume(co)
+coroutine.resume(co) -- Melanjutkan dari yield()
+                    </pre>
 
                     <h3 id="core-closures" style="color: var(--color-dark); margin-top: 40px;">4. Closures & First-Class Functions</h3>
-                    <p>**Pengertian:** Di Lua, fungsi adalah objek **First-Class** (dapat disimpan di variabel, dilewatkan sebagai argumen). **Closure** adalah fungsi anonim yang menyimpan akses ke variabel lokal (`upvalue`) dari fungsi luarnya, bahkan setelah fungsi luar tersebut selesai.</p>
+                    <p>**Pengertian:** Fungsi adalah objek **First-Class**. **Closure** adalah fungsi anonim yang mempertahankan akses ke variabel lokal (`upvalue`) dari fungsi luarnya, bahkan setelah fungsi luar selesai dieksekusi.</p>
+                    <h4 class="code-title">Contoh Code: Counter Closure</h4>
+                    <pre class="code-block">
+function createCounter()
+    local count = 0 -- Upvalue
+    return function() 
+        count = count + 1
+        return count
+    end
+end
+local counterA = createCounter()
+print(counterA()) -- Output: 1
+                    </pre>
 
                     <h3 id="core-scope" style="color: var(--color-dark); margin-top: 40px;">5. Local vs Global Scope</h3>
-                    <p>**Pengertian:** Variabel **`local`** diakses langsung dan sangat cepat. Variabel **Global** (dideklarasikan tanpa `local`) diakses melalui *lookup* table `_G`, yang lebih lambat. Menggunakan `local` adalah kunci untuk kode Lua yang efisien.</p>
-                    
+                    <p>**Pengertian:** Variabel **`local`** diakses langsung dan sangat cepat. Variabel **Global** (tanpa `local`) diakses melalui *lookup* table `_G`, yang lebih lambat. Menggunakan `local` adalah kunci untuk kode Lua yang efisien.</p>
+                    <h4 class="code-title">Contoh Code: Deklarasi Scope</h4>
+                    <pre class="code-block">
+local local_var = 1 -- Akses Cepat
+global_var = 2      -- Akses Lambat
+
+local print = print -- Meng-*cache* fungsi global untuk kecepatan
+print(local_var) 
+                    </pre>
+
                     <h3 id="core-iterators" style="color: var(--color-dark); margin-top: 40px;">6. Iterators (`ipairs`, `pairs`)</h3>
-                    <p>**Pengertian:** Fungsi generator yang digunakan dalam loop `for` generik. **`ipairs`** menjamin urutan numerik dan berhenti di `nil` pertama (Array). **`pairs`** melintasi semua kunci/nilai (Map) tanpa jaminan urutan.</p>
+                    <p>**Pengertian:** **`ipairs`** menjamin urutan numerik dan berhenti di `nil` pertama (Ideal untuk Array). **`pairs`** melintasi *semua* kunci/nilai (Map), urutan tidak dijamin.</p>
+                    <h4 class="code-title">Contoh Code: Perbedaan Iterator</h4>
+                    <pre class="code-block">
+local t = {10, 20, item="Sword"}
+-- Iterasi Array (Sequential):
+for i, v in ipairs(t) do print(i, v) end
+-- Iterasi Map & Array (Semua):
+for k, v in pairs(t) do print(k, v) end
+                    </pre>
 
                     <h3 id="core-variadic" style="color: var(--color-dark); margin-top: 40px;">7. Variadic Functions (`...`)</h3>
-                    <p>**Pengertian:** Fungsi yang dideklarasikan dengan elipsis (`...`) dan mampu menerima jumlah argumen yang tidak tetap. Argumen ini biasanya dikemas ke dalam table menggunakan sintaks `{...}`.</p>
+                    <p>**Pengertian:** Fungsi yang dapat menerima jumlah argumen yang bervariasi, ditandai dengan elipsis (`...`). Argumen ini diakses dengan elipsis atau dikemas ke dalam table dengan `{...}`.</p>
+                    <h4 class="code-title">Contoh Code: Variadic Argument</h4>
+                    <pre class="code-block">
+function printAll(a, ...)
+    local extras = {...} -- Mengemas sisa argumen
+    print("Pertama:", a)
+    print("Sisa:", #extras)
+end
+printAll(1, 2, 3, 4)
+                    </pre>
 
                     <h3 id="core-tco" style="color: var(--color-dark); margin-top: 40px;">8. Tail Call Optimization (TCO)</h3>
-                    <p>**Pengertian:** Mekanisme penting di mana *stack frame* fungsi saat ini dihapus jika pemanggilan fungsi adalah **aksi terakhir**. Ini memungkinkan rekursi tak terbatas tanpa *stack overflow*, sering digunakan di *game engine*.</p>
+                    <p>**Pengertian:** Mekanisme penting di mana *stack frame* fungsi saat ini dihapus jika pemanggilan fungsi adalah **aksi terakhir** (*Tail Call*), memungkinkan rekursi tak terbatas (misalnya, *loop* game engine).</p>
+                    <h4 class="code-title">Contoh Code: Tail Call Rekursif</h4>
+                    <pre class="code-block">
+-- TCO terjadi di sini karena 'hitung' adalah aksi terakhir
+function hitung(n, hasil)
+    if n == 0 then return hasil end
+    return hitung(n - 1, hasil + n) 
+end
+print(hitung(100000, 0)) -- Tidak akan stack overflow
+                    </pre>
                     
                     <h3 id="core-gc" style="color: var(--color-dark); margin-top: 40px;">9. Garbage Collection (GC)</h3>
-                    <p>**Pengertian:** Sistem manajemen memori **inkremental** Lua. GC bekerja dalam tahapan kecil untuk mencegah *lag* besar yang disebabkan oleh pembersihan memori secara penuh (*stop-the-world*), vital untuk *frame rate* game yang stabil.</p>
+                    <p>**Pengertian:** Sistem manajemen memori **inkremental** Lua. Bekerja dalam tahapan kecil untuk mencegah *lag* besar yang disebabkan oleh pembersihan memori secara penuh, vital untuk *frame rate* yang stabil.</p>
+                    <h4 class="code-title">Contoh Code: Mengontrol GC</h4>
+                    <pre class="code-block">
+-- Melihat penggunaan memori (dalam KB)
+print(collectgarbage("count")) 
+-- Memaksa siklus penuh:
+collectgarbage("collect")
+                    </pre>
 
                     <h3 id="core-error" style="color: var(--color-dark); margin-top: 40px;">10. Error Handling (`pcall`)</h3>
-                    <p>**Pengertian:** Fungsi **`pcall`** (*protected call*) menjalankan fungsi yang diberikan dan menangkap kesalahan apa pun yang terjadi, mengembalikan status boolean dan pesan kesalahan. Ini mencegah skrip utama *crash*.</p>
-                    
+                    <p>**Pengertian:** Fungsi **`pcall`** (*protected call*) menjalankan fungsi secara aman. Jika terjadi kesalahan, `pcall` mengembalikan `false` dan pesan kesalahan alih-alih menghentikan seluruh program.</p>
+                    <h4 class="code-title">Contoh Code: Menggunakan `pcall`</h4>
+                    <pre class="code-block">
+local status, result = pcall(function()
+    -- Ini akan menghasilkan error
+    error("Terjadi masalah!") 
+end)
+
+if not status then
+    print("Error ditangkap:", result)
+end
+                    </pre>
+
                     <h2 id="lua-roblox-title" style="border-bottom: 3px solid var(--color-accent-orange); padding-bottom: 15px; margin-top: 80px;">B. Konsep Lua Roblox Studio 👾</h2>
 
                     <h3 id="roblox-instance" style="color: var(--color-dark); margin-top: 40px;">11. Instances & Datamodel</h3>
-                    <p>**Pengertian:** Semua objek di lingkungan Roblox (Player, Part, Model, Script) adalah **`Instance`**. **Datamodel** adalah struktur hirarki (*tree-like structure*) di mana semua Instance ini disimpan (`game.Workspace`, `game.Players`).</p>
+                    <p>**Pengertian:** Semua objek di lingkungan Roblox (Part, Player, Script, dll.) adalah **`Instance`**. **Datamodel** adalah struktur hirarki tempat semua Instance ini disimpan (`game.Workspace`, `game.Players`).</p>
+                    <h4 class="code-title">Contoh Code: Membuat Instance Baru</h4>
+                    <pre class="code-block">
+-- Instance.new adalah constructor objek
+local Part = Instance.new("Part")
+Part.Parent = game.Workspace
+print(Part.ClassName) -- Output: Part
+                    </pre>
 
                     <h3 id="roblox-events" style="color: var(--color-dark); margin-top: 40px;">12. Events & Connection</h3>
-                    <p>**Pengertian:** Inti dari *event-driven programming* Roblox. Fungsi **`.Event:Connect(Function)`** akan menghubungkan fungsi ke *event* (misalnya, `Part.Touched`), menjalankan fungsi tersebut setiap kali *event* dipicu.</p>
+                    <p>**Pengertian:** Mekanisme untuk *event-driven programming*. Fungsi terhubung ke *event* (misalnya, `Part.Touched`) menggunakan **`.Event:Connect(Function)`** dan dieksekusi saat *event* dipicu.</p>
+                    <h4 class="code-title">Contoh Code: Menghubungkan Event</h4>
+                    <pre class="code-block">
+local myPart = game.Workspace.Part
+myPart.Touched:Connect(function(otherPart)
+    print("Part disentuh oleh:", otherPart.Name)
+end)
+                    </pre>
                     
                     <h3 id="roblox-serverclient" style="color: var(--color-dark); margin-top: 40px;">13. Server/Client Model</h3>
-                    <p>**Pengertian:** Pemisahan antara kode yang berjalan di **Server** (`Script`) yang mengontrol keadaan game universal, dan **Client** (`LocalScript`) yang mengontrol UI dan input pemain. Penting untuk keamanan dan sinkronisasi.</p>
+                    <p>**Pengertian:** Pemisahan antara kode **Server** (`Script`) yang mengontrol keadaan game universal dan **Client** (`LocalScript`) yang mengontrol UI dan input pemain. Kunci untuk keamanan.</p>
+                    <h4 class="code-title">Contoh Code: Identifikasi Skrip</h4>
+                    <pre class="code-block">
+if script.ClassName == "Script" then
+    print("Berjalan di Server")
+else
+    print("Berjalan di Client")
+end
+                    </pre>
 
                     <h3 id="roblox-remote" style="color: var(--color-dark); margin-top: 40px;">14. Remote Events/Functions</h3>
-                    <p>**Pengertian:** Mekanisme untuk komunikasi antar-proses (Server $\leftrightarrow$ Client). **RemoteEvents** digunakan untuk memicu tindakan satu arah, sedangkan **RemoteFunctions** menunggu respons balik.</p>
+                    <p>**Pengertian:** Mekanisme komunikasi antara Server dan Client. **RemoteEvents** untuk memicu tindakan satu arah. **RemoteFunctions** untuk memanggil fungsi dan menunggu nilai balik.</p>
+                    <h4 class="code-title">Contoh Code: Memanggil RemoteEvent (Client ke Server)</h4>
+                    <pre class="code-block">
+-- Asumsikan 'Remote' ada di ReplicatedStorage
+local remote = game.ReplicatedStorage.MyRemoteEvent
+remote:FireServer("Pesan dari Client")
+                    </pre>
 
                     <h3 id="roblox-services" style="color: var(--color-dark); margin-top: 40px;">15. Services & GetService</h3>
-                    <p>**Pengertian:** Modul bawaan Roblox yang menyediakan fungsionalitas utama. Mengaksesnya dengan **`game:GetService("ServiceName")`** adalah praktik terbaik untuk memastikan Service sudah dimuat.</p>
+                    <p>**Pengertian:** Modul inti bawaan Roblox yang menyediakan fungsionalitas spesifik (misalnya, `Players`, `RunService`). **`game:GetService("ServiceName")`** adalah cara terbaik dan teraman untuk mengaksesnya.</p>
+                    <h4 class="code-title">Contoh Code: Mengakses Service</h4>
+                    <pre class="code-block">
+-- Praktik terbaik:
+local Players = game:GetService("Players")
+local Part = Instance.new("Part")
+                    </pre>
 
                     <h3 id="roblox-properties" style="color: var(--color-dark); margin-top: 40px;">16. Properties & Attributes</h3>
-                    <p>**Pengertian:** **Properties** adalah variabel bawaan pada Instance (`Part.Color`, `Player.Health`). **Attributes** adalah variabel kustom yang dapat ditambahkan developer ke Instance (misalnya, `Part:SetAttribute("Damage", 10)`).</p>
+                    <p>**Pengertian:** **Properties** adalah variabel bawaan (`Part.Color`, `Part.Position`). **Attributes** adalah variabel kustom yang dapat ditambahkan developer ke Instance untuk menyimpan data kustom (misalnya, *damage* senjata).</p>
+                    <h4 class="code-title">Contoh Code: Mengatur Attribute</h4>
+                    <pre class="code-block">
+local myPart = game.Workspace.Part
+myPart:SetAttribute("Damage", 25)
+print(myPart:GetAttribute("Damage"))
+                    </pre>
 
                     <h3 id="roblox-wait" style="color: var(--color-dark); margin-top: 40px;">17. Wait/Yielding</h3>
-                    <p>**Pengertian:** Fungsi **`task.wait(n)`** menangguhkan eksekusi skrip selama $n$ detik. Di Roblox, ini adalah bentuk *yielding* yang aman, karena skrip tidak memblokir *thread* utama.</p>
+                    <p>**Pengertian:** Fungsi **`task.wait(n)`** menangguhkan eksekusi skrip selama $n$ detik. Ini adalah bentuk *yielding* yang aman di Roblox, memastikan skrip tidak memblokir *thread* utama.</p>
+                    <h4 class="code-title">Contoh Code: Menggunakan task.wait</h4>
+                    <pre class="code-block">
+print("Mulai...")
+task.wait(5) -- Berhenti selama 5 detik
+print("5 detik berlalu.")
+                    </pre>
                     
                     <h3 id="roblox-filtering" style="color: var(--color-dark); margin-top: 40px;">18. Filtering Enabled</h3>
-                    <p>**Pengertian:** Konsep keamanan mendasar. Memastikan bahwa perubahan penting (seperti kerusakan atau posisi part) hanya dapat disahkan dan dimodifikasi oleh **Server**, mencegah *exploiting* dari sisi Client.</p>
+                    <p>**Pengertian:** Konsep keamanan mendasar. Memastikan bahwa perubahan penting pada status game (fisika, keuangan, dll.) hanya dapat disahkan oleh **Server**, mencegah *exploiting* dari sisi Client.</p>
+                    <h4 class="code-title">Contoh Code: Server Authority (Implisit)</h4>
+                    <pre class="code-block">
+-- Script yang berjalan di Server:
+-- Perubahan ini diotorisasi oleh Server
+game.Workspace.Part.Position = Vector3.new(0, 5, 0) 
+                    </pre>
                     
                     <h3 id="roblox-datastore" style="color: var(--color-dark); margin-top: 40px;">19. DataStoreService</h3>
-                    <p>**Pengertian:** Layanan yang digunakan untuk menyimpan data pemain secara persisten (permanen) di *server cloud* Roblox, kunci untuk menyimpan *progress*, skor, atau mata uang game.</p>
+                    <p>**Pengertian:** Layanan untuk menyimpan data pemain secara persisten (permanen) di *server cloud* Roblox, kunci untuk menyimpan *progress*, skor, atau mata uang game antara sesi bermain.</p>
+                    <h4 class="code-title">Contoh Code: Mengakses DataStore</h4>
+                    <pre class="code-block">
+local DataStoreService = game:GetService("DataStoreService")
+local CoinsStore = DataStoreService:GetDataStore("CoinsData")
+-- ... (Penggunaan GetAsync/SetAsync)
+                    </pre>
                     
                     <h3 id="roblox-runservice" style="color: var(--color-dark); margin-top: 40px;">20. RunService (Stepped/Heartbeat)</h3>
-                    <p>**Pengertian:** Service yang menyediakan *event* yang dipicu setiap *frame*. **`Heartbeat`** dipicu setelah simulasi fisika (ideal untuk *client-side*), sementara **`Stepped`** dipicu sebelum simulasi (ideal untuk *server-side*).</p>
+                    <p>**Pengertian:** Service yang menyediakan *event* yang dipicu setiap *frame*. **`Heartbeat`** dipicu setelah simulasi fisika (ideal untuk *client-side*), **`Stepped`** dipicu sebelum simulasi (ideal untuk *server-side*).</p>
+                    <h4 class="code-title">Contoh Code: Event Per Frame</h4>
+                    <pre class="code-block">
+local RunService = game:GetService("RunService")
+RunService.Heartbeat:Connect(function(deltaTime)
+    -- Logika per frame di sini
+    -- deltaTime adalah waktu sejak frame terakhir
+end)
+                    </pre>
 
                 </article>
             </div>
@@ -154,7 +295,31 @@ print((v1 + v2).x)
     </main>
 
     <footer class="main-footer">
-        </footer>
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <h4 class="footer-heading">LuaVerse</h4>
+                <p>Situs pembelajaran bahasa Lua yang fokus pada efisiensi, kecepatan, dan aplikasi di dunia nyata.</p>
+                <p class="copyright">&copy; 2024 LuaVerse. Dibuat dengan semangat open source.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4 class="footer-heading">Tautan</h4>
+                <a href="docs.html" class="footer-link">Dokumentasi</a>
+                <a href="tutorials.html" class="footer-link">Tutorial Lanjutan</a>
+                <a href="contact.html" class="footer-link">Ajukan Pertanyaan</a>
+            </div>
+            
+            <div class="footer-community">
+                <h4 class="footer-heading">Komunitas</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-link">Discord</a>
+                    <a href="#" class="social-link">GitHub</a>
+                    <a href="#" class="social-link">Twitter/X</a>
+                </div>
+                <p class="footer-contact">Email: info@luaverse.dev</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
