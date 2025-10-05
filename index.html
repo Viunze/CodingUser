@@ -15,8 +15,8 @@
             <a href="#home" class="logo-text">LuaVerse</a>
             <div class="nav-links-desktop">
                 <a href="#home" class="nav-link">Home</a>
-                <a href="#lua-core" class="nav-link">Konsep Lua</a>
-                <a href="tutorials.html" class="nav-link">Tutorial</a>
+                <a href="docs.html" class="nav-link">Dokumentasi Inti</a>
+                <a href="#lua-core" class="nav-link">Konsep (Lanjutan)</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="contact.html" class="cta-button nav-cta">Mulai Coding!</a>
             </div>
@@ -26,32 +26,38 @@
 
     <main>
         <section id="home" class="hero-section">
-            <h1 class="hero-headline">Kuasai Lua. Ringan. Cepat. Efisien.</h1>
-            <p class="hero-subtext">Gerbang Anda menuju pemrograman yang kuat dan sederhana, sempurna untuk game development & scripting.</p>
-            <a href="tutorials.html" class="cta-button">Jelajahi Tutorial (FREE)</a>
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-headline">Kuasai Lua. Ringan. Cepat. Efisien.</h1>
+                    <p class="hero-subtext">Gerbang Anda menuju pemrograman yang kuat dan sederhana, sempurna untuk game development & scripting.</p>
+                    <a href="docs.html" class="cta-button">Lihat Dokumentasi Inti</a>
+                </div>
+                <div class="hero-image-placeholder">
+                    <p>Lua Code Snippet Illustration</p>
+                </div>
+            </div>
         </section>
 
-        <section class="main-content-section">
+        <section class="main-content-section" id="fitur">
             <div class="container">
                 <h2 class="section-title">Mengapa Belajar Lua di Sini?</h2>
                 <div class="card-grid">
-                    
                     <article class="content-card">
                         <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
                         <h3 class="card-title">Sintaksis Minimalis</h3>
-                        <p>Fokus pada logika Anda, bukan pada kerumitan bahasa. Pelajari *syntax* Lua yang elegan dan mudah dipahami.</p>
+                        <p>Fokus pada logika Anda. Pelajari *syntax* Lua yang elegan, efisien, dan mudah dipahami dalam 20 menit.</p>
                     </article>
 
                     <article class="content-card">
                         <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2v2h4V2h2v2c1.1 0 2 .9 2 2v3h-2V6H8v3H6V6c0-1.1.9-2 2-2V2h2zm-2 7h8v9H8V9zm8 11v2h-8v-2h8z"/></svg></div>
                         <h3 class="card-title">Powering Games & Apps</h3>
-                        <p>Lua adalah bahasa scripting inti di Roblox, Nginx, dan aplikasi besar lainnya. Kuasai integrasinya dengan C/C++.</p>
+                        <p>Lua adalah bahasa scripting inti di Roblox, Nginx, dan aplikasi besar lainnya. Integrasi superior dengan C/C++.</p>
                     </article>
 
                     <article class="content-card">
                         <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
                         <h3 class="card-title">Referensi Komprehensif</h3>
-                        <p>Akses dokumentasi terbaru, mulai dari tipe data dasar hingga implementasi Coroutine dan Metatable.</p>
+                        <p>Akses dokumentasi terbaru, dari tipe data dasar hingga implementasi *Metatable* dan *Coroutine* tingkat lanjut.</p>
                     </article>
                 </div>
             </div>
@@ -59,7 +65,7 @@
         
         <section id="lua-core" class="lua-core-section">
             <div class="container">
-                <h2 class="section-title" style="color: white;">Konsep Inti Lua</h2>
+                <h2 class="section-title" style="color: white;">Konsep Inti Lua (Lanjutan)</h2>
                 <p class="section-intro-text">
                     Pelajari fitur-fitur terkuat Lua yang membuatnya unggul dalam kinerja dan fleksibilitas. Pilih topik di bawah ini untuk penjelasan rinci.
                 </p>
@@ -74,76 +80,33 @@
                     <div class="tab-content active" id="metatable">
                         <h3 class="content-title">Metatable: Memperluas Perilaku Table</h3>
                         <p>
-                            **Metatable** adalah jantung dari fleksibilitas Lua. Ini memungkinkan kita mengubah perilaku table (seperti operator aritmatika, akses indeks, atau bahkan implementasi *inheritance*). Metatable bekerja dengan *metamethods* seperti `__index` dan `__add`. Fitur ini sangat penting untuk implementasi **Object-Oriented Programming (OOP)** di Lua.
+                            **Metatable** adalah jantung dari fleksibilitas Lua. Ini memungkinkan kita mengubah perilaku table menggunakan *metamethods* seperti `__index` untuk *inheritance* atau `__add` untuk *operator overloading*. Fitur ini sangat penting untuk implementasi **OOP** di Lua.
                         </p>
-                        <h4 class="code-title">Contoh Code: Penggunaan `__add`</h4>
+                        <h4 class="code-title">Contoh Code (Sederhana): Operator Overloading</h4>
                         <pre class="code-block">
-local Vektor = {}
-local metatableVektor = {
-    __add = function(v1, v2)
-        return Vektor.new(v1.x + v2.x, v1.y + v2.y)
-    end
+local mt = {
+    __add = function(a, b) return a.value + b.value end
 }
+local obj1 = {value = 5}
+local obj2 = {value = 10}
 
-function Vektor.new(x, y)
-    local self = {x = x, y = y}
-    setmetatable(self, metatableVektor)
-    return self
-end
+setmetatable(obj1, mt)
 
-local vA = Vektor.new(10, 5)
-local vB = Vektor.new(3, 2)
-
-local vC = vA + vB  -- Ini memanggil fungsi __add
-print(vC.x)          -- Output: 13
+print(obj1 + obj2) -- Output: 15
                         </pre>
+                        <a href="docs.html#metatable-full" class="link-full-doc">Baca Penjelasan & Kode Lengkap $\rightarrow$</a>
                     </div>
-
+                    
                     <div class="tab-content" id="coroutine" style="display: none;">
                         <h3 class="content-title">Coroutines: Eksekusi yang Kooperatif</h3>
-                        <p>
-                            **Coroutines** (sering disebut *thread* ringan) adalah fitur untuk menjalankan fungsi secara kooperatif. Berbeda dengan *thread* paralel, Coroutines **menyerahkan kontrol** kembali ke program utama, memungkinkan *state* program dibekukan dan dilanjutkan. Ini ideal untuk manajemen animasi game, I/O non-blokir, atau alur kerja yang kompleks.
-                        </p>
-                        <h4 class="code-title">Contoh Code: Menggunakan `yield` dan `resume`</h4>
-                        <pre class="code-block">
-local function hitunganMundur(n)
-    while n > 0 do
-        print("Sisa waktu:", n)
-        n = n - 1
-        coroutine.yield() -- Serahkan kontrol
-    end
-    return "Selesai!"
-end
-
-local co = coroutine.create(hitunganMundur)
-
--- Memanggil resume setiap frame/loop
-print(coroutine.resume(co, 5)) -- Sisa waktu: 5
-print(coroutine.resume(co))    -- Sisa waktu: 4
-print(coroutine.resume(co))    -- Output: true, Selesai!
-                        </pre>
+                        <p>Coroutines memungkinkan **pause dan resume** fungsi. Ideal untuk manajemen animasi game, I/O non-blokir, atau alur kerja yang kompleks. Ini memberikan *multitasking* kooperatif yang ringan dan efisien.</p>
+                        <a href="docs.html#coroutine-full" class="link-full-doc">Baca Penjelasan & Kode Lengkap $\rightarrow$</a>
                     </div>
 
                     <div class="tab-content" id="datatype" style="display: none;">
                         <h3 class="content-title">Tipe Data & Table: Table Adalah Segalanya</h3>
-                        <p>
-                            Lua dikenal karena kesederhanaan tipe datanya (hanya delapan). Yang paling dominan adalah **table**, yang berfungsi ganda sebagai *array*, *hash map*, *object*, dan *struct*. Fleksibilitas ini meminimalkan kebutuhan akan struktur data terpisah dan membuat kodenya ringkas.
-                        </p>
-                        <h4 class="code-title">Contoh Code: Fleksibilitas Table</h4>
-                        <pre class="code-block">
--- Table sebagai Array
-local arr = {"a", "b", "c"}
-print(arr[2]) -- Output: b
-
--- Table sebagai Map/Object
-local player = {
-    nama = "Kaito", 
-    level = 10, 
-    ["kekuatan-khusus"] = 50
-}
-print(player.nama)
-print(player["kekuatan-khusus"])
-                        </pre>
+                        <p>Lua hanya punya delapan tipe data. **Table** adalah struktur data utama yang berfungsi ganda sebagai *array*, *hash map*, dan *object*. Fleksibilitas ini membuat kodenya sangat ringkas.</p>
+                        <a href="docs.html#datatype-full" class="link-full-doc">Baca Penjelasan & Kode Lengkap $\rightarrow$</a>
                     </div>
                 </div>
             </div>
@@ -152,7 +115,6 @@ print(player["kekuatan-khusus"])
         <section id="faq" class="main-content-section" style="padding-top: 50px;">
             <div class="container">
                 <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
-                
                 <div class="accordion-container">
                     <div class="accordion-item">
                         <button class="accordion-header" aria-expanded="false">
