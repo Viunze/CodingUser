@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Scroll-triggered Animations
+    
+    // =========================================================
+    // 1. Scroll-triggered Animations (Fade-in Cards)
+    // =========================================================
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -12,12 +15,27 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: '0px 0px -50px 0px' 
     });
 
-    // Amati elemen cards
     document.querySelectorAll('.content-card').forEach(card => {
         observer.observe(card);
     });
 
-    // Logika Tab untuk Konsep Lua
+    // =========================================================
+    // 2. Dynamic Sticky Header (Shrink/Fade)
+    // =========================================================
+    const header = document.querySelector('.sticky-nav');
+    const scrollThreshold = 50; 
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > scrollThreshold) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // =========================================================
+    // 3. Logika Tab untuk Konsep Lua
+    // =========================================================
     window.showLuaConcept = function(conceptId) {
         document.querySelectorAll('.tab-content').forEach(content => {
             content.style.display = 'none';
@@ -33,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector(`.tab-buttons button[onclick*="${conceptId}"]`).classList.add('active');
     };
 
-    // Logika Accordion untuk FAQ
+    // =========================================================
+    // 4. Logika Accordion untuk FAQ
+    // =========================================================
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', () => {
             const content = header.nextElementSibling;
@@ -52,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Toggle yang sedang diklik
             if (!isExpanded) {
                 header.setAttribute('aria-expanded', 'true');
-                content.style.maxHeight = content.scrollHeight + 'px'; 
+                content.style.maxHeight = content.scrollHeight + 30 + 'px'; // Tambah padding sedikit
                 icon.style.transform = 'rotate(45deg)'; 
             } else {
                 header.setAttribute('aria-expanded', 'false');
