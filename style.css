@@ -1,7 +1,7 @@
 /* ==================== 5. Fitur UI Modern Secara Keseluruhan (Global) ==================== */
 :root {
     --color-dark: #1E232A;
-    --color-light: #F4F7FC; /* Dominan */
+    --color-light: #F4F7FC; /* Background utama terang */
     --color-accent-blue: #007BFF;
     --color-accent-orange: #FF6B35;
     --lua-purple-light: #4c2d5f;
@@ -17,7 +17,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--color-light); /* Background utama terang */
+    background-color: var(--color-light); 
     color: var(--color-dark);
     line-height: 1.6;
     scroll-behavior: smooth;
@@ -25,7 +25,7 @@ body {
 
 h1, h2, h3 {
     font-family: 'Poppins', sans-serif;
-    font-weight: 800; /* Dibuat lebih tebal */
+    font-weight: 800; 
     color: var(--color-dark);
 }
 
@@ -37,18 +37,19 @@ h1, h2, h3 {
 
 /* Tombol CTA Premium */
 .cta-button {
-    padding: 16px 32px; /* Lebih besar */
+    padding: 16px 32px; 
     background-color: var(--color-accent-orange); 
     color: var(--color-light);
     text-decoration: none;
-    border-radius: 50px; /* Lebih rounded */
+    border-radius: 50px; 
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5); /* Bayangan lebih kuat */
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5); 
     border: none;
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    display: inline-block;
 }
 .cta-button:hover {
     background-color: #ff8555;
@@ -62,16 +63,20 @@ h1, h2, h3 {
     top: 0;
     width: 100%;
     background: rgba(255, 255, 255, 0.98); 
-    backdrop-filter: blur(8px); /* Efek blur yang lebih jelas */
+    backdrop-filter: blur(8px); 
     box-shadow: 0 1px 15px rgba(0,0,0,0.1);
     z-index: 1000;
 }
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--lua-purple-dark);
+}
 
-/* ==================== 1. Halaman Utama (Hero - Revised) ==================== */
+/* ==================== 1. Halaman Utama (Hero - Asimetris) ==================== */
 .hero-section {
-    min-height: 80vh; /* Tidak lagi 100vh */
+    min-height: 75vh; 
     padding: 150px 0 80px 0;
-    /* Gradien dari Biru Tua ke Ungu Lembut (Modern dan Dinamis) */
     background: linear-gradient(135deg, #0d1a3c 0%, var(--lua-purple-light) 100%); 
     color: var(--color-light);
 }
@@ -79,17 +84,17 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     gap: 50px;
-}
-.hero-text {
-    flex: 2;
     text-align: left;
 }
+.hero-text {
+    flex: 3; /* Ambil lebih banyak ruang untuk teks */
+}
 .hero-headline {
-    font-size: 4rem; /* Lebih ringkas */
+    font-size: 4rem; 
     color: var(--color-light);
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.3); 
     margin-bottom: 20px;
-    letter-spacing: -2px;
+    line-height: 1.2;
 }
 .hero-subtext {
     font-size: 1.3rem;
@@ -97,12 +102,12 @@ h1, h2, h3 {
     color: rgba(255, 255, 255, 0.9);
 }
 .hero-image-placeholder {
-    flex: 1;
+    flex: 2; /* Ambil lebih sedikit ruang untuk visual */
     min-width: 300px;
     height: 350px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,16 +116,27 @@ h1, h2, h3 {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ==================== 1. Bagian Konten Utama (Cards - Neumorphism Ringan) ==================== */
+/* ==================== 1. Bagian Konten Utama (Cards - Neumorphism) ==================== */
 .main-content-section {
     padding: 100px 0;
     background-color: var(--color-light);
+}
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: var(--lua-purple-dark);
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
 }
 .content-card {
     background: var(--color-light); 
     padding: 35px;
     border-radius: var(--border-radius-card); 
-    /* Gaya Neumorphism/Kedalaman */
+    /* Gaya Neumorphism */
     box-shadow: 5px 5px 15px #d9dce1, -5px -5px 15px #ffffff;
     border-left: 5px solid var(--color-accent-blue);
     transition: all 0.3s ease;
@@ -130,7 +146,6 @@ h1, h2, h3 {
     box-shadow: 8px 8px 20px #c0c3c8, -8px -8px 20px #ffffff;
 }
 .card-icon-wrapper {
-    /* Gaya ikon Neumorphism yang lebih jelas */
     background-color: var(--color-light);
     padding: 15px;
     border-radius: 50%;
@@ -138,6 +153,14 @@ h1, h2, h3 {
     height: 65px;
     box-shadow: 4px 4px 8px #d9dce1, -4px -4px 8px #ffffff; 
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-icon {
+    width: 35px;
+    height: 35px;
+    color: var(--color-accent-orange);
 }
 
 /* ==================== Konsep Inti Lua Section (Premium Dark) ==================== */
@@ -145,6 +168,11 @@ h1, h2, h3 {
     padding: 100px 0;
     background: linear-gradient(145deg, var(--lua-purple-dark) 10%, #2c0b47 90%);
     color: var(--color-light);
+}
+.tab-content {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 10px;
 }
 .link-full-doc {
     display: inline-block;
@@ -157,18 +185,19 @@ h1, h2, h3 {
 .link-full-doc:hover {
     color: var(--color-accent-blue);
 }
-/* Gaya kode blok yang lebih profesional (Dark Mode) */
 .code-block {
-    background-color: #0d1117; /* GitHub Dark */
+    background-color: #0d1117; 
     color: #c9d1d9; 
     padding: 18px;
     border-radius: 8px;
-    font-family: 'Fira Code', monospace; /* Gunakan font monospace modern */
+    font-family: monospace; 
     font-size: 0.95rem;
     border-left: 4px solid var(--color-accent-orange);
+    overflow-x: auto;
+    white-space: pre-wrap;
 }
 
-/* ==================== FAQ Accordion (Modern) ==================== */
+/* ==================== FAQ Accordion (Rapi) ==================== */
 .accordion-item {
     border: none;
     border-radius: 8px;
@@ -178,7 +207,13 @@ h1, h2, h3 {
 }
 .accordion-header {
     font-weight: 700;
-    border-radius: 8px;
+}
+.accordion-content {
+    padding: 0 20px;
+    /* ... transisi di JS ... */
+}
+.accordion-content p {
+    padding: 10px 0 20px 0;
 }
 
 /* ==================== Responsif Sederhana ==================== */
@@ -197,4 +232,47 @@ h1, h2, h3 {
         margin-top: 30px;
         min-width: 100%;
     }
+    /* Navigasi Mobile (Perlu JS untuk Hamburger) */
+    .nav-links-desktop {
+        display: none; 
+    }
+    .hamburger-menu {
+        display: block; 
+    }
+}
+
+/* ==================== Styling Khusus Halaman Docs ==================== */
+.docs-header {
+    padding: 120px 0 60px 0 !important;
+}
+.docs-content {
+    padding: 80px 0 !important;
+}
+.docs-sidebar a {
+    transition: color 0.2s;
+    padding-left: 10px;
+    border-left: 3px solid transparent;
+}
+.docs-sidebar a:hover {
+    color: var(--color-accent-blue);
+    border-left: 3px solid var(--color-accent-blue);
+}
+.docs-content h2 {
+    color: var(--lua-purple-dark); 
+    border-bottom: 2px solid #eee; 
+    padding-bottom: 10px; 
+    margin-bottom: 25px;
+}
+.docs-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+.docs-content ul li {
+    padding-left: 20px;
+    text-indent: -15px;
+}
+.docs-content ul li::before {
+    content: "🚀"; 
+    margin-right: 5px;
 }
