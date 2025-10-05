@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami - LuaVerse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Gaya Khusus Halaman Kontak */
+        .contact-section {
+            padding: 150px 0 100px;
+            background-color: var(--color-light);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: flex-start;
+        }
+        .contact-info h2, .contact-form h2 {
+            color: var(--lua-purple-dark);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .info-icon {
+            color: var(--color-accent-orange);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Gaya Formulir Neumorphism */
+        .contact-form form {
+            background: var(--color-light); 
+            padding: 40px;
+            border-radius: var(--border-radius-card); 
+            box-shadow: 8px 8px 20px #d9dce1, -8px -8px 20px #ffffff;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-dark);
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ebf0f7; /* Background input halus */
+            box-shadow: inset 2px 2px 5px #d9dce1, inset -2px -2px 5px #ffffff;
+            transition: box-shadow 0.3s;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            box-shadow: inset 3px 3px 7px #d9dce1, inset -3px -3px 7px #ffffff, 0 0 0 2px var(--color-accent-blue);
+        }
+
+        /* Responsif */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="sticky-nav">
+        <nav class="container nav-content">
+            <a href="index.html" class="logo-text">LuaVerse</a>
+            <div class="nav-links-desktop">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="docs.html" class="nav-link">Dokumentasi Inti</a>
+                <a href="tutorials.html" class="nav-link">Tutorial</a>
+                <a href="contact.html" class="nav-link active">Hubungi Kami</a>
+                <a href="contact.html" class="cta-button nav-cta">Mulai Coding!</a>
+            </div>
+            <button class="hamburger-menu" aria-label="Toggle navigation">&#9776;</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-section">
+            <div class="container contact-grid">
+                
+                <div class="contact-info">
+                    <h2>Tertarik pada Lua? Mari Bicara.</h2>
+                    <p>Kami sangat antusias untuk mendengar pertanyaan, saran, atau kolaborasi Anda. Kirimkan pesan atau temukan kami melalui detail di bawah.</p>
+                    
+                    <div class="info-item">
+                        <span class="info-icon">&#9993;</span>
+                        <span>**Email:** info@luaverse.dev</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">&#128222;</span>
+                        <span>**Telepon:** (+62) 812-XXXX-9000 (Hanya Bisnis)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">&#128190;</span>
+                        <span>**GitHub:** LuaVerse-Community/Docs</span>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2>Kirim Pesan Langsung</h2>
+                    <form action="YOUR_FORM_SUBMIT_URL" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Alamat Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <input type="text" id="subject" name="subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan Anda</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%; margin-top: 15px;">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <h4 class="footer-heading">LuaVerse</h4>
+                <p>Situs pembelajaran bahasa Lua yang fokus pada efisiensi, kecepatan, dan aplikasi di dunia nyata.</p>
+                <p class="copyright">&copy; 2024 LuaVerse. Dibuat dengan semangat open source.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4 class="footer-heading">Tautan</h4>
+                <a href="docs.html" class="footer-link">Dokumentasi</a>
+                <a href="tutorials.html" class="footer-link">Tutorial Lanjutan</a>
+                <a href="contact.html" class="footer-link">Ajukan Pertanyaan</a>
+            </div>
+            
+            <div class="footer-community">
+                <h4 class="footer-heading">Komunitas</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-link">Discord</a>
+                    <a href="#" class="social-link">GitHub</a>
+                    <a href="#" class="social-link">Twitter/X</a>
+                </div>
+                <p class="footer-contact">Email: info@luaverse.dev</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> 
+
+</body>
+</html>
