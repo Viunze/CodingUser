@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dokumentasi Inti Lua - LuaVerse</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700&display=swap" rel-stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,264 +31,122 @@
             </div>
         </section>
 
-        <section id="roadmap" class="docs-roadmap" style="background-color: var(--color-light); padding: 50px 0;">
-            <div class="container">
-                <h2 style="text-align: center; color: var(--color-accent-blue); margin-bottom: 40px;">Roadmap Pembelajaran Lua 🚀</h2>
-                <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-                    
-                    <article class="content-card" style="border-left-color: #4CAF50;">
-                        <h3 class="card-title" style="color: #4CAF50;">Level 1: Fondasi</h3>
-                        <p>Kuasai sintaks dasar yang minimalis. Pondasi yang kuat untuk semua aplikasi.</p>
-                        <ul>
-                            <li>Variables & Scope (local/global)</li>
-                            <li>Tipe Data (nil, number, string)</li>
-                            <li>Kontrol Flow (if/else, while)</li>
-                        </ul>
-                        <a href="#datatype-full" class="link-full-doc" style="color: #4CAF50;">Mulai $\rightarrow$</a>
-                    </article>
-
-                    <article class="content-card" style="border-left-color: #FFC107;">
-                        <h3 class="card-title" style="color: #FFC107;">Level 2: Fungsionalitas</h3>
-                        <p>Membuat kode Anda lebih terstruktur, modular, dan kuat.</p>
-                        <ul>
-                            <li>**Functions & Closures**</li>
-                            <li>**Table** sebagai Array & Map</li>
-                            <li>**Modular Programming** (`require`)</li>
-                        </ul>
-                        <a href="#functions" class="link-full-doc" style="color: #FFC107;">Lanjut $\rightarrow$</a>
-                    </article>
-
-                    <article class="content-card" style="border-left-color: var(--color-accent-orange);">
-                        <h3 class="card-title" style="color: var(--color-accent-orange);">Level 3: Mastery</h3>
-                        <p>Selami fitur unik yang membuat Lua menjadi pilihan *High-Performance*.</p>
-                        <ul>
-                            <li>**Metatable** (OOP)</li>
-                            <li>**Coroutines** (Multitasking)</li>
-                            <li>**Garbage Collection** (Optimasi)</li>
-                        </ul>
-                        <a href="#metatable-full" class="link-full-doc" style="color: var(--color-accent-orange);">Mastery $\rightarrow$</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
         <section class="docs-content">
             <div class="container" style="display: flex; gap: 40px;">
                 
                 <aside style="flex: 1; max-width: 280px;">
                     <nav class="docs-sidebar" style="position: sticky; top: 100px;">
-                        <h3>Daftar Isi</h3>
-                        <a href="#metatable-full" class="sidebar-link">1. Metatable: OOP & Overloading</a>
-                        <a href="#coroutine-full" class="sidebar-link">2. Coroutines: Multitasking</a>
-                        <a href="#datatype-full" class="sidebar-link">3. Table Hybrid & Tipe Data</a>
-                        <a href="#functions" class="sidebar-link">4. Fungsi & Closure</a>
-                        <a href="#iterators-full" class="sidebar-link">5. Iterators (`ipairs`, `pairs`)</a>
-                        <a href="#variadic-full" class="sidebar-link">6. Variadic Functions (`...`)</a>
-                        <a href="#scope-full" class="sidebar-link">7. Global vs Local Scope</a>
-                        <a href="#gc-full" class="sidebar-link">8. Garbage Collection</a>
-                        <a href="#tailcalls-full" class="sidebar-link">9. Tail Calls</a>
+                        <h3>💡 Lua Inti (Global)</h3>
+                        <a href="#core-table" class="sidebar-link">1. Table & Tipe Data (Hybrid)</a>
+                        <a href="#core-metatable" class="sidebar-link">2. Metatable & Metamethods</a>
+                        <a href="#core-coroutines" class="sidebar-link">3. Coroutines</a>
+                        <a href="#core-closures" class="sidebar-link">4. Closures & First-Class F.</a>
+                        <a href="#core-scope" class="sidebar-link">5. Local vs Global Scope</a>
+                        <a href="#core-iterators" class="sidebar-link">6. Iterators (`ipairs`, `pairs`)</a>
+                        <a href="#core-variadic" class="sidebar-link">7. Variadic Functions (`...`)</a>
+                        <a href="#core-tco" class="sidebar-link">8. Tail Call Optimization</a>
+                        <a href="#core-gc" class="sidebar-link">9. Garbage Collection</a>
+                        <a href="#core-error" class="sidebar-link">10. Error Handling (`pcall`)</a>
+                        <h3>👾 Lua Roblox Studio</h3>
+                        <a href="#roblox-instance" class="sidebar-link">11. Instances & Datamodel</a>
+                        <a href="#roblox-events" class="sidebar-link">12. Events & Connection</a>
+                        <a href="#roblox-serverclient" class="sidebar-link">13. Server/Client Model</a>
+                        <a href="#roblox-remote" class="sidebar-link">14. Remote Events/Funct.</a>
+                        <a href="#roblox-services" class="sidebar-link">15. Services & GetService</a>
+                        <a href="#roblox-properties" class="sidebar-link">16. Properties & Attributes</a>
+                        <a href="#roblox-wait" class="sidebar-link">17. Wait/Yielding</a>
+                        <a href="#roblox-filtering" class="sidebar-link">18. Filtering Enabled</a>
+                        <a href="#roblox-datastore" class="sidebar-link">19. DataStoreService</a>
+                        <a href="#roblox-runservice" class="sidebar-link">20. RunService (Stepped/Heartbeat)</a>
                     </nav>
                 </aside>
 
                 <article style="flex: 3; min-width: 600px;">
                     
-                    <h2 id="metatable-full">1. Metatable: Membangun OOP di Lua</h2>
-                    <p>
-                        **Pengertian:** Metatable adalah table khusus yang mendefinisikan perilaku table lain (table pemilik). Ini adalah kunci fleksibilitas Lua dan fondasi untuk **Object-Oriented Programming (OOP)** dan *operator overloading*.
-                    </p>
-                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Kasus Penggunaan: Inheritance dengan `__index`</h3>
-                    <p>
-                        Dengan mendefinisikan `__index` ke table lain (table parent/class), Lua akan mencari properti yang hilang di parent table tersebut, menciptakan perilaku *inheritance* sederhana dan efisien yang umum digunakan dalam *game engine*.
-                    </p>
-                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Inheritance Objek</h4>
-                    <pre class="code-block">
--- Table Class (Parent)
-local ClassHewan = {}
-ClassHewan.__index = ClassHewan 
+                    <h2 id="lua-core-title" style="border-bottom: 3px solid var(--color-accent-blue); padding-bottom: 15px;">A. Konsep Lua Inti (Global)</h2>
 
-function ClassHewan:new(nama)
-    local self = {nama = nama, health = 100}
-    return setmetatable(self, ClassHewan) 
-end
-
--- Method milik ClassHewan
-function ClassHewan:getHealth()
-    return self.health
-end
-
-local Kucing = ClassHewan:new("Milo")
-print(Kucing:getHealth()) 
--- Output: 100
-                    </pre>
-
-                    <h2 id="coroutine-full">2. Coroutines: Multitasking Ringan</h2>
-                    <p>
-                        **Pengertian:** Coroutines adalah bentuk *multitasking* **kooperatif**. Berbeda dengan *thread* (paralel), Coroutine **menyerahkan kontrol** secara eksplisit menggunakan `coroutine.yield()`, dan dapat dilanjutkan dari tempat ia berhenti menggunakan `coroutine.resume()`. Ini ideal untuk simulasi *state machine* atau I/O asinkron non-pemblokiran.
-                    </p>
-                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Simetri Producer-Consumer</h4>
-                    <pre class="code-block">
-local function producer()
-    local i = 0
-    while true do
-        i = i + 1
-        -- Menghasilkan nilai dan menangguhkan diri
-        local konsumsi = coroutine.yield(i) 
-        print("Producer menerima:", konsumsi)
-    end
-end
-
-local co = coroutine.create(producer)
-
-print(coroutine.resume(co)) 
--- Output: true, 1
-print(coroutine.resume(co, "Item Diterima!")) 
--- Output: Producer menerima: Item Diterima!, true, 2
-                    </pre>
-                    
-                    <h2 id="datatype-full">3. Table Hybrid & Tipe Data</h2>
-                    <p>
-                        **Pengertian:** Lua hanya memiliki **delapan tipe data primitif**. **Table** adalah struktur data utama yang berfungsi ganda sebagai *array*, *hash map*, *object*, dan *module* secara bersamaan (Hybrid).
-                    </p>
-                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Kunci Fleksibilitas Table:</h3>
-                    <ul>
-                        <li>**Array Sequential:** Menggunakan kunci numerik berurutan (indeks $1, 2, 3...$).</li>
-                        <li>**Hash Map (Dictionary):** Menggunakan kunci string atau tipe data Lua lainnya.</li>
-                        <li>**Kunci $nil$ tidak diizinkan!** Akses ke kunci yang tidak ada menghasilkan $nil$.</li>
-                    </ul>
-                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Table Hybrid</h4>
+                    <h3 id="core-table" style="color: var(--color-dark); margin-top: 40px;">1. Table Hybrid & Tipe Data</h3>
+                    <p>**Pengertian:** Table adalah struktur data majemuk tunggal Lua yang berfungsi sebagai **Array** (indeks numerik) dan **Hash Map/Dictionary** (indeks string) secara bersamaan. Lua hanya memiliki delapan tipe data primitif, dan Table adalah kunci untuk semua struktur kompleks.</p>
+                    <h4 class="code-title">Contoh Code: Dualitas Table</h4>
                     <pre class="code-block">
 local data = {
     "Peluru", -- Array key 1
-    "Obat",   -- Array key 2
-    nama = "Item Data", -- Map key "nama"
+    jumlah = 50, -- Map key "jumlah"
 }
+print(data[1])  -- Output: Peluru (Array Access)
+print(data.jumlah) -- Output: 50 (Map Access)
+                    </pre>
 
-print(data[2])          
--- Output: Obat (Akses Array)
-print(data.nama)        
--- Output: Item Data (Akses Map)
+                    <h3 id="core-metatable" style="color: var(--color-dark); margin-top: 40px;">2. Metatable & Metamethods</h3>
+                    <p>**Pengertian:** **Metatable** adalah *mechanism* untuk mendefinisikan perilaku table. **Metamethods** adalah fungsi yang disimpan di Metatable (seperti `__index` atau `__add`) yang dipanggil ketika operasi tertentu dilakukan pada table pemiliknya, memungkinkan OOP dan operator overloading.</p>
+                    <h4 class="code-title">Contoh Code: Metamethod `__add`</h4>
+                    <pre class="code-block">
+local vectorMt = { 
+    __add = function(a, b) return {x = a.x + b.x} end
+}
+local v1 = setmetatable({x=1}, vectorMt)
+local v2 = {x=2} 
+
+print((v1 + v2).x) 
+-- Output: 3 (Metamethod __add dipanggil)
                     </pre>
                     
-                    <h2 id="functions">4. Fungsi & Penutup (Closure)</h2>
-                    <p>
-                        **Pengertian:** Fungsi adalah tipe data *first-class*. **Closure** terjadi ketika sebuah fungsi bersarang menyimpan akses ke variabel lokal dari fungsi luarnya, bahkan setelah fungsi luar tersebut selesai dieksekusi.
-                    </p>
-                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Membuat Counter dengan Closure</h4>
-                    <pre class="code-block">
-function createCounter()
-    local count = 0 -- Variabel lokal yang 'ditangkap' (upvalue)
-    return function()
-        count = count + 1
-        return count
-    end
-end
+                    <h3 id="core-coroutines" style="color: var(--color-dark); margin-top: 40px;">3. Coroutines</h3>
+                    <p>**Pengertian:** Bentuk *multitasking* **kooperatif** (bukan paralel) yang memungkinkan fungsi untuk ditangguhkan (**`yield`**) dan dilanjutkan (**`resume`**) dari titik penghentiannya. Ideal untuk simulasi I/O, animasi, atau game loop berbasis *state machine*.</p>
 
-local counterA = createCounter()
+                    <h3 id="core-closures" style="color: var(--color-dark); margin-top: 40px;">4. Closures & First-Class Functions</h3>
+                    <p>**Pengertian:** Di Lua, fungsi adalah objek **First-Class** (dapat disimpan di variabel, dilewatkan sebagai argumen). **Closure** adalah fungsi anonim yang menyimpan akses ke variabel lokal (`upvalue`) dari fungsi luarnya, bahkan setelah fungsi luar tersebut selesai.</p>
 
-print(counterA()) 
--- Output: 1
-                    </pre>
-
-                    <h2 id="iterators-full">5. Iterators dan Generic For</h2>
-                    <p>
-                        **Pengertian:** Loop `for` generik di Lua ($`for k, v in iterator(t) do ... end`$) adalah cara yang kuat dan efisien untuk melintasi table. Lua menyediakan dua iterator bawaan yang penting: **`ipairs`** dan **`pairs`**.
-                    </p>
-                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Pilihan Iterator:</h3>
-                    <ul>
-                        <li>**`ipairs` (Index Pair):** Melintasi table secara berurutan hanya melalui kunci numerik ($1, 2, 3...$) dan berhenti pada elemen numerik pertama yang $nil$. **Ideal untuk Array.**</li>
-                        <li>**`pairs` (Pair):** Melintasi *semua* pasangan kunci-nilai dalam table, baik numerik maupun string, secara tidak berurutan. **Ideal untuk Hash Map/Dictionary.**</li>
-                    </ul>
-                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Perbedaan `ipairs` dan `pairs`</h4>
-                    <pre class="code-block">
-local t = {10, 20, item="Sword", 30} -- Note: 30 tidak dilintasi ipairs
-
--- Menggunakan ipairs: Berhenti di "item" karena non-numerik
-for i, v in ipairs(t) do
-    print("ipairs:", i, v) 
-end
--- Output: ipairs: 1 10, ipairs: 2 20
-
--- Menggunakan pairs: Melintasi semua
-for k, v in pairs(t) do
-    print("pairs:", k, v)
-end
--- Output (urutan tidak dijamin): pairs: 1 10, pairs: 2 20, pairs: item Sword, pairs: 3 30
-                    </pre>
-
-                    <h2 id="variadic-full">6. Variadic Functions (`...`)</h2>
-                    <p>
-                        **Pengertian:** Fungsi variadik adalah fungsi yang dapat menerima jumlah argumen yang **bervariasi (tidak tetap)**. Di Lua, ini dilambangkan dengan elipsis (`...`) dalam definisi fungsi.
-                    </p>
-                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Pilihan Pengambilan Argumen:</h3>
-                    <ul>
-                        <li>**`...` (Elipsis):** Digunakan untuk mengambil semua argumen variabel, biasanya di dalam *multiple assignment*.</li>
-                        <li>**`select('#', ...)`:** Digunakan untuk mendapatkan jumlah total argumen yang diteruskan.</li>
-                    </ul>
-                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Menggunakan Variadic Arguments</h4>
-                    <pre class="code-block">
-function sumAll(...)
-    local args = {...} -- Mengemas semua argumen menjadi table
-    local total = 0
-    for _, num in ipairs(args) do
-        total = total + num
-    end
-    print("Jumlah argumen:", select('#', ...))
-    return total
-end
-
-local result = sumAll(5, 10, 15, 20)
-print(result)
--- Output: Jumlah argumen: 4
--- Output: 50
-                    </pre>
-
-                    <h2 id="scope-full">7. Global vs Local Scope</h2>
-                    <p>
-                        **Pengertian:** Lua secara *default* memperlakukan variabel yang dideklarasikan tanpa kata kunci `local` sebagai **variabel global**, menyimpannya dalam table global `_G`. Menggunakan kata kunci **`local`** sangat penting untuk kinerja dan menghindari tabrakan nama.
-                    </p>
-                    <h3 style="margin-top: 25px; color: var(--color-accent-blue);">Pentingnya `local` untuk Kinerja:</h3>
-                    <p>
-                        Mengakses variabel **lokal** jauh lebih cepat daripada variabel global. Setiap kali Anda memanggil variabel global, Lua harus melakukan *lookup* pada table `_G`, sedangkan variabel lokal diakses langsung melalui *register*.
-                    </p>
-                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Efisiensi Scope</h4>
-                    <pre class="code-block">
--- Variable Global (Akses Lambat)
-GLOBAL_COUNT = 0 
-
--- Variable Local (Akses Cepat)
-local LOCAL_COUNT = 0
-
--- Disarankan untuk meng-*cache* fungsi global yang sering digunakan
-local print = print 
-
-function increment()
-    -- Akses Lokal jauh lebih cepat daripada mengakses GLOBAL_COUNT
-    LOCAL_COUNT = LOCAL_COUNT + 1
-    print("Lokal:", LOCAL_COUNT)
-end
-                    </pre>
+                    <h3 id="core-scope" style="color: var(--color-dark); margin-top: 40px;">5. Local vs Global Scope</h3>
+                    <p>**Pengertian:** Variabel **`local`** diakses langsung dan sangat cepat. Variabel **Global** (dideklarasikan tanpa `local`) diakses melalui *lookup* table `_G`, yang lebih lambat. Menggunakan `local` adalah kunci untuk kode Lua yang efisien.</p>
                     
-                    <h2 id="gc-full">8. Garbage Collection: Manajemen Memori Ringan</h2>
-                    <p>
-                        **Pengertian:** Lua menggunakan *Garbage Collector* (GC) **inkremental** dan **generasional**. Ini berarti GC dapat melakukan pekerjaannya dalam tahapan kecil (*increments*), mengurangi *stuttering* atau *lag* yang disebabkan oleh pembersihan memori (*stop-the-world* GC). Ini sangat penting untuk Game Development!
-                    </p>
+                    <h3 id="core-iterators" style="color: var(--color-dark); margin-top: 40px;">6. Iterators (`ipairs`, `pairs`)</h3>
+                    <p>**Pengertian:** Fungsi generator yang digunakan dalam loop `for` generik. **`ipairs`** menjamin urutan numerik dan berhenti di `nil` pertama (Array). **`pairs`** melintasi semua kunci/nilai (Map) tanpa jaminan urutan.</p>
+
+                    <h3 id="core-variadic" style="color: var(--color-dark); margin-top: 40px;">7. Variadic Functions (`...`)</h3>
+                    <p>**Pengertian:** Fungsi yang dideklarasikan dengan elipsis (`...`) dan mampu menerima jumlah argumen yang tidak tetap. Argumen ini biasanya dikemas ke dalam table menggunakan sintaks `{...}`.</p>
+
+                    <h3 id="core-tco" style="color: var(--color-dark); margin-top: 40px;">8. Tail Call Optimization (TCO)</h3>
+                    <p>**Pengertian:** Mekanisme penting di mana *stack frame* fungsi saat ini dihapus jika pemanggilan fungsi adalah **aksi terakhir**. Ini memungkinkan rekursi tak terbatas tanpa *stack overflow*, sering digunakan di *game engine*.</p>
                     
-                    <h2 id="tailcalls-full">9. Tail Calls: Optimasi Rekursi</h2>
-                    <p>
-                        **Pengertian:** *Tail call* adalah pemanggilan fungsi sebagai **aksi terakhir** dalam sebuah fungsi. Lua secara otomatis melakukan *Tail Call Optimization* (TCO), di mana ia dapat membuang *stack frame* dari fungsi pemanggil sebelum melakukan pemanggilan terakhir.
-                    </p>
-                    <h4 class="code-title" style="color: var(--color-dark);">Contoh Code: Tail Call Optimization</h4>
-                    <pre class="code-block">
--- Ini adalah Tail Call (Optimized)
-function hitung(n, hasil)
-    if n == 0 then
-        return hasil
-    else
-        -- Aksi terakhir adalah 'return hitung(..)', stack frame dibuang
-        return hitung(n - 1, hasil + n) 
-    end
-end
-                    </pre>
+                    <h3 id="core-gc" style="color: var(--color-dark); margin-top: 40px;">9. Garbage Collection (GC)</h3>
+                    <p>**Pengertian:** Sistem manajemen memori **inkremental** Lua. GC bekerja dalam tahapan kecil untuk mencegah *lag* besar yang disebabkan oleh pembersihan memori secara penuh (*stop-the-world*), vital untuk *frame rate* game yang stabil.</p>
+
+                    <h3 id="core-error" style="color: var(--color-dark); margin-top: 40px;">10. Error Handling (`pcall`)</h3>
+                    <p>**Pengertian:** Fungsi **`pcall`** (*protected call*) menjalankan fungsi yang diberikan dan menangkap kesalahan apa pun yang terjadi, mengembalikan status boolean dan pesan kesalahan. Ini mencegah skrip utama *crash*.</p>
+                    
+                    <h2 id="lua-roblox-title" style="border-bottom: 3px solid var(--color-accent-orange); padding-bottom: 15px; margin-top: 80px;">B. Konsep Lua Roblox Studio 👾</h2>
+
+                    <h3 id="roblox-instance" style="color: var(--color-dark); margin-top: 40px;">11. Instances & Datamodel</h3>
+                    <p>**Pengertian:** Semua objek di lingkungan Roblox (Player, Part, Model, Script) adalah **`Instance`**. **Datamodel** adalah struktur hirarki (*tree-like structure*) di mana semua Instance ini disimpan (`game.Workspace`, `game.Players`).</p>
+
+                    <h3 id="roblox-events" style="color: var(--color-dark); margin-top: 40px;">12. Events & Connection</h3>
+                    <p>**Pengertian:** Inti dari *event-driven programming* Roblox. Fungsi **`.Event:Connect(Function)`** akan menghubungkan fungsi ke *event* (misalnya, `Part.Touched`), menjalankan fungsi tersebut setiap kali *event* dipicu.</p>
+                    
+                    <h3 id="roblox-serverclient" style="color: var(--color-dark); margin-top: 40px;">13. Server/Client Model</h3>
+                    <p>**Pengertian:** Pemisahan antara kode yang berjalan di **Server** (`Script`) yang mengontrol keadaan game universal, dan **Client** (`LocalScript`) yang mengontrol UI dan input pemain. Penting untuk keamanan dan sinkronisasi.</p>
+
+                    <h3 id="roblox-remote" style="color: var(--color-dark); margin-top: 40px;">14. Remote Events/Functions</h3>
+                    <p>**Pengertian:** Mekanisme untuk komunikasi antar-proses (Server $\leftrightarrow$ Client). **RemoteEvents** digunakan untuk memicu tindakan satu arah, sedangkan **RemoteFunctions** menunggu respons balik.</p>
+
+                    <h3 id="roblox-services" style="color: var(--color-dark); margin-top: 40px;">15. Services & GetService</h3>
+                    <p>**Pengertian:** Modul bawaan Roblox yang menyediakan fungsionalitas utama. Mengaksesnya dengan **`game:GetService("ServiceName")`** adalah praktik terbaik untuk memastikan Service sudah dimuat.</p>
+
+                    <h3 id="roblox-properties" style="color: var(--color-dark); margin-top: 40px;">16. Properties & Attributes</h3>
+                    <p>**Pengertian:** **Properties** adalah variabel bawaan pada Instance (`Part.Color`, `Player.Health`). **Attributes** adalah variabel kustom yang dapat ditambahkan developer ke Instance (misalnya, `Part:SetAttribute("Damage", 10)`).</p>
+
+                    <h3 id="roblox-wait" style="color: var(--color-dark); margin-top: 40px;">17. Wait/Yielding</h3>
+                    <p>**Pengertian:** Fungsi **`task.wait(n)`** menangguhkan eksekusi skrip selama $n$ detik. Di Roblox, ini adalah bentuk *yielding* yang aman, karena skrip tidak memblokir *thread* utama.</p>
+                    
+                    <h3 id="roblox-filtering" style="color: var(--color-dark); margin-top: 40px;">18. Filtering Enabled</h3>
+                    <p>**Pengertian:** Konsep keamanan mendasar. Memastikan bahwa perubahan penting (seperti kerusakan atau posisi part) hanya dapat disahkan dan dimodifikasi oleh **Server**, mencegah *exploiting* dari sisi Client.</p>
+                    
+                    <h3 id="roblox-datastore" style="color: var(--color-dark); margin-top: 40px;">19. DataStoreService</h3>
+                    <p>**Pengertian:** Layanan yang digunakan untuk menyimpan data pemain secara persisten (permanen) di *server cloud* Roblox, kunci untuk menyimpan *progress*, skor, atau mata uang game.</p>
+                    
+                    <h3 id="roblox-runservice" style="color: var(--color-dark); margin-top: 40px;">20. RunService (Stepped/Heartbeat)</h3>
+                    <p>**Pengertian:** Service yang menyediakan *event* yang dipicu setiap *frame*. **`Heartbeat`** dipicu setelah simulasi fisika (ideal untuk *client-side*), sementara **`Stepped`** dipicu sebelum simulasi (ideal untuk *server-side*).</p>
+
                 </article>
             </div>
         </section>
@@ -296,31 +154,7 @@ end
     </main>
 
     <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-about">
-                <h4 class="footer-heading">LuaVerse</h4>
-                <p>Situs pembelajaran bahasa Lua yang fokus pada efisiensi, kecepatan, dan aplikasi di dunia nyata.</p>
-                <p class="copyright">&copy; 2024 LuaVerse. Dibuat dengan semangat open source.</p>
-            </div>
-            
-            <div class="footer-links">
-                <h4 class="footer-heading">Tautan</h4>
-                <a href="docs.html" class="footer-link">Dokumentasi</a>
-                <a href="tutorials.html" class="footer-link">Tutorial Lanjutan</a>
-                <a href="contact.html" class="footer-link">Ajukan Pertanyaan</a>
-            </div>
-            
-            <div class="footer-community">
-                <h4 class="footer-heading">Komunitas</h4>
-                <div class="social-icons">
-                    <a href="#" class="social-link">Discord</a>
-                    <a href="#" class="social-link">GitHub</a>
-                    <a href="#" class="social-link">Twitter/X</a>
-                </div>
-                <p class="footer-contact">Email: info@luaverse.dev</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
     <script src="script.js"></script>
 </body>
