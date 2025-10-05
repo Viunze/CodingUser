@@ -20,18 +20,19 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Tambahan untuk smooth scrolling antar anchor */
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Inter', sans-serif;
     color: var(--color-dark);
     line-height: 1.6;
-    background-color: var(--color-light);
+    background-color: var(--color-light); /* Latar belakang body untuk semua halaman */
 }
 
 .container {
-    max-width: 1200px;
+    /* Kunci: Batasi lebar konten dan letakkan di tengah */
+    max-width: 1200px; 
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -64,20 +65,21 @@ a:hover {
 }
 
 /* ========================================================= */
-/* 2. Navigasi & Header */
+/* 2. Navigasi & Header (Full Background, Centered Content) */
 /* ========================================================= */
 
 .sticky-nav {
     position: sticky;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100%; 
     z-index: 1000;
-    background-color: white;
+    background-color: white; /* Background putih memenuhi layar */
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
 }
 
 .nav-content {
+    /* Konten Navigasi di dalam container */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -108,7 +110,7 @@ a:hover {
 }
 
 .hamburger-menu {
-    display: none; /* Default: Sembunyikan di desktop */
+    display: none;
     font-size: 1.8rem;
     background: none;
     border: none;
@@ -117,14 +119,15 @@ a:hover {
 }
 
 /* ========================================================= */
-/* 3. Hero Section (Index Page) */
+/* 3. Hero Section (Full Background, Centered Content) */
 /* ========================================================= */
 
 .hero-section {
-    background: linear-gradient(135deg, var(--lua-purple-dark), var(--lua-purple-light));
+    background: linear-gradient(135deg, var(--lua-purple-dark), var(--lua-purple-light)); /* Background memenuhi layar */
     color: white;
     padding: 150px 0 100px;
     text-align: center;
+    /* TIDAK ADA WIDTH: 100% yang berlebihan */
 }
 
 .hero-section h1 {
@@ -164,7 +167,7 @@ a:hover {
 
 /* Docs Header */
 .docs-header {
-    background: linear-gradient(135deg, var(--lua-purple-dark), #3a2b45);
+    background: linear-gradient(135deg, var(--lua-purple-dark), #3a2b45); /* Background memenuhi layar */
     color: white;
     padding: 120px 0 60px;
 }
@@ -177,14 +180,12 @@ a:hover {
     padding: 50px 0;
 }
 .docs-content h2 {
-    /* Gaya untuk judul kategori besar (A. Konsep Lua Inti, B. Konsep Roblox) */
     font-size: 2.2rem;
     color: var(--color-dark);
     padding-bottom: 10px;
     margin-bottom: 25px;
 }
 .docs-content h3 {
-    /* Gaya untuk judul sub-bagian (1. Table Hybrid, 2. Metatable) */
     font-size: 1.7rem;
     color: var(--color-dark);
     margin-top: 40px;
@@ -200,7 +201,7 @@ a:hover {
     color: var(--lua-purple-dark);
     margin-top: 25px;
     margin-bottom: 10px;
-    border-bottom: 1px dashed #ddd; /* Garis pemisah halus */
+    border-bottom: 1px dashed #ddd;
     padding-bottom: 5px;
 }
 .docs-sidebar a {
@@ -221,15 +222,15 @@ a:hover {
     font-weight: 700;
     color: var(--color-accent-orange);
     border-left: 3px solid var(--color-accent-orange);
-    background-color: #fff8f5; /* Latar belakang lembut saat aktif */
+    background-color: #fff8f5; 
 }
 
 /* ========================================================= */
-/* 5. Footer */
+/* 5. Footer (Full Background, Centered Content) */
 /* ========================================================= */
 
 .main-footer {
-    background-color: var(--lua-purple-dark);
+    background-color: var(--lua-purple-dark); /* Background memenuhi layar */
     color: white;
     padding: 60px 0 30px;
 }
@@ -257,7 +258,7 @@ a:hover {
 }
 
 /* ========================================================= */
-/* 6. Responsif & Mobile Menu (Kerapian) */
+/* 6. Responsif & Mobile Menu */
 /* ========================================================= */
 
 @media (max-width: 992px) {
@@ -266,7 +267,7 @@ a:hover {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 60px; /* Di bawah header */
+        top: 60px;
         left: 0;
         width: 100%;
         background-color: white;
@@ -293,7 +294,7 @@ a:hover {
         flex-direction: column;
     }
     .docs-sidebar {
-        position: static !important; /* Non-sticky di mobile */
+        position: static !important;
         max-width: 100% !important;
         padding-bottom: 20px;
         border-bottom: 1px solid #ddd;
