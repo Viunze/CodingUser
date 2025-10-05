@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuaVerse: Gerbang Pembelajaran Lua yang Ringan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="sticky-nav">
+        <nav class="container nav-content">
+            <a href="#home" class="logo-text">LuaVerse</a>
+            <div class="nav-links-desktop">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#lua-core" class="nav-link">Konsep Lua</a>
+                <a href="tutorials.html" class="nav-link">Tutorial</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="contact.html" class="cta-button nav-cta">Mulai Coding!</a>
+            </div>
+            <button class="hamburger-menu" aria-label="Toggle navigation">&#9776;</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <h1 class="hero-headline">Kuasai Lua. Ringan. Cepat. Efisien.</h1>
+            <p class="hero-subtext">Gerbang Anda menuju pemrograman yang kuat dan sederhana, sempurna untuk game development & scripting.</p>
+            <a href="tutorials.html" class="cta-button">Jelajahi Tutorial (FREE)</a>
+        </section>
+
+        <section class="main-content-section">
+            <div class="container">
+                <h2 class="section-title">Mengapa Belajar Lua di Sini?</h2>
+                <div class="card-grid">
+                    
+                    <article class="content-card">
+                        <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
+                        <h3 class="card-title">Sintaksis Minimalis</h3>
+                        <p>Fokus pada logika Anda, bukan pada kerumitan bahasa. Pelajari *syntax* Lua yang elegan dan mudah dipahami.</p>
+                    </article>
+
+                    <article class="content-card">
+                        <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2v2h4V2h2v2c1.1 0 2 .9 2 2v3h-2V6H8v3H6V6c0-1.1.9-2 2-2V2h2zm-2 7h8v9H8V9zm8 11v2h-8v-2h8z"/></svg></div>
+                        <h3 class="card-title">Powering Games & Apps</h3>
+                        <p>Lua adalah bahasa scripting inti di Roblox, Nginx, dan aplikasi besar lainnya. Kuasai integrasinya dengan C/C++.</p>
+                    </article>
+
+                    <article class="content-card">
+                        <div class="card-icon-wrapper"><svg class="card-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+                        <h3 class="card-title">Referensi Komprehensif</h3>
+                        <p>Akses dokumentasi terbaru, mulai dari tipe data dasar hingga implementasi Coroutine dan Metatable.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <section id="lua-core" class="lua-core-section">
+            <div class="container">
+                <h2 class="section-title" style="color: white;">Konsep Inti Lua</h2>
+                <p class="section-intro-text">
+                    Pelajari fitur-fitur terkuat Lua yang membuatnya unggul dalam kinerja dan fleksibilitas. Pilih topik di bawah ini untuk penjelasan rinci.
+                </p>
+
+                <div class="core-concept-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" onclick="showLuaConcept('metatable')">Metatable (Kekuatan OOP)</button>
+                        <button class="tab-button" onclick="showLuaConcept('coroutine')">Coroutines (Multitasking Ringan)</button>
+                        <button class="tab-button" onclick="showLuaConcept('datatype')">Tipe Data & Table</button>
+                    </div>
+
+                    <div class="tab-content active" id="metatable">
+                        <h3 class="content-title">Metatable: Memperluas Perilaku Table</h3>
+                        <p>
+                            **Metatable** adalah jantung dari fleksibilitas Lua. Ini memungkinkan kita mengubah perilaku table (seperti operator aritmatika, akses indeks, atau bahkan implementasi *inheritance*). Metatable bekerja dengan *metamethods* seperti `__index` dan `__add`. Fitur ini sangat penting untuk implementasi **Object-Oriented Programming (OOP)** di Lua.
+                        </p>
+                        <h4 class="code-title">Contoh Code: Penggunaan `__add`</h4>
+                        <pre class="code-block">
+local Vektor = {}
+local metatableVektor = {
+    __add = function(v1, v2)
+        return Vektor.new(v1.x + v2.x, v1.y + v2.y)
+    end
+}
+
+function Vektor.new(x, y)
+    local self = {x = x, y = y}
+    setmetatable(self, metatableVektor)
+    return self
+end
+
+local vA = Vektor.new(10, 5)
+local vB = Vektor.new(3, 2)
+
+local vC = vA + vB  -- Ini memanggil fungsi __add
+print(vC.x)          -- Output: 13
+                        </pre>
+                    </div>
+
+                    <div class="tab-content" id="coroutine" style="display: none;">
+                        <h3 class="content-title">Coroutines: Eksekusi yang Kooperatif</h3>
+                        <p>
+                            **Coroutines** (sering disebut *thread* ringan) adalah fitur untuk menjalankan fungsi secara kooperatif. Berbeda dengan *thread* paralel, Coroutines **menyerahkan kontrol** kembali ke program utama, memungkinkan *state* program dibekukan dan dilanjutkan. Ini ideal untuk manajemen animasi game, I/O non-blokir, atau alur kerja yang kompleks.
+                        </p>
+                        <h4 class="code-title">Contoh Code: Menggunakan `yield` dan `resume`</h4>
+                        <pre class="code-block">
+local function hitunganMundur(n)
+    while n > 0 do
+        print("Sisa waktu:", n)
+        n = n - 1
+        coroutine.yield() -- Serahkan kontrol
+    end
+    return "Selesai!"
+end
+
+local co = coroutine.create(hitunganMundur)
+
+-- Memanggil resume setiap frame/loop
+print(coroutine.resume(co, 5)) -- Sisa waktu: 5
+print(coroutine.resume(co))    -- Sisa waktu: 4
+print(coroutine.resume(co))    -- Output: true, Selesai!
+                        </pre>
+                    </div>
+
+                    <div class="tab-content" id="datatype" style="display: none;">
+                        <h3 class="content-title">Tipe Data & Table: Table Adalah Segalanya</h3>
+                        <p>
+                            Lua dikenal karena kesederhanaan tipe datanya (hanya delapan). Yang paling dominan adalah **table**, yang berfungsi ganda sebagai *array*, *hash map*, *object*, dan *struct*. Fleksibilitas ini meminimalkan kebutuhan akan struktur data terpisah dan membuat kodenya ringkas.
+                        </p>
+                        <h4 class="code-title">Contoh Code: Fleksibilitas Table</h4>
+                        <pre class="code-block">
+-- Table sebagai Array
+local arr = {"a", "b", "c"}
+print(arr[2]) -- Output: b
+
+-- Table sebagai Map/Object
+local player = {
+    nama = "Kaito", 
+    level = 10, 
+    ["kekuatan-khusus"] = 50
+}
+print(player.nama)
+print(player["kekuatan-khusus"])
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="main-content-section" style="padding-top: 50px;">
+            <div class="container">
+                <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
+                
+                <div class="accordion-container">
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            Apa keunggulan utama Lua dibandingkan Python/JavaScript?
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Keunggulan utama Lua adalah **kecepatannya**, **ukuran *footprint*-nya yang sangat kecil** (sekitar 250KB), dan **kemampuan integrasinya** yang superior dengan C/C++ (sebagai *embedded language*). Ini membuatnya ideal untuk *scripting* game dan sistem tertanam, di mana performa dan sumber daya sangat dibatasi.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            Di mana Lua paling sering digunakan?
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Lua sangat populer di **Game Development** (Roblox, World of Warcraft Addons, CryEngine) dan **Network/System Scripting** (Nginx, Redis, Wireshark). Kecepatannya di lingkungan *high-performance* tidak tertandingi oleh bahasa *scripting* lain.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner">
+            <div class="container">
+                <h2>Siap Membangun Dunia Anda?</h2>
+                <a href="docs.html" class="cta-button">Lihat Dokumentasi Lengkap</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <h4 class="footer-heading">LuaVerse</h4>
+                <p>Situs pembelajaran bahasa Lua yang fokus pada efisiensi, kecepatan, dan aplikasi di dunia nyata.</p>
+                <p class="copyright">&copy; 2024 LuaVerse. Dibuat dengan semangat open source.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4 class="footer-heading">Tautan</h4>
+                <a href="docs.html" class="footer-link">Dokumentasi</a>
+                <a href="tutorials.html" class="footer-link">Tutorial Lanjutan</a>
+                <a href="contact.html" class="footer-link">Ajukan Pertanyaan</a>
+            </div>
+            
+            <div class="footer-community">
+                <h4 class="footer-heading">Komunitas</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-link">Discord</a>
+                    <a href="#" class="social-link">GitHub</a>
+                    <a href="#" class="social-link">Twitter/X</a>
+                </div>
+                <p class="footer-contact">Email: info@luaverse.dev</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
